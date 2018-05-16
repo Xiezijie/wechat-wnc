@@ -1,0 +1,308 @@
+/* pages/products/productDetails/productDetails.wxss */
+@import "/res/ifont/iconfont.wxss";
+@import "/res/common.wxss";
+
+view.color1{
+  color: #ff5a6e;
+}
+
+/*广告图样式  */
+.swiper {
+  width: 100%;
+  height: 420rpx;
+}
+.swiper image {
+  width: 100%;
+  height: 100%;
+}
+
+/*广告图文字  */
+.pro_head{
+  margin-bottom: 100rpx;
+}
+.pro_advent_text {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 26rpx 30rpx 30rpx;
+  line-height: 55rpx;
+  background: #fff;
+}
+.proTitle {
+  font-size: 30rpx;
+  font-weight: 700;
+  margin-bottom: 20rpx;
+}
+.proMarket {
+  display: flex;
+  align-items: center;
+  font-size: 20rpx;
+}
+.proMarket text {
+  font-size: 20rpx;
+  text-decoration: line-through;
+}
+.proPrice {
+  display: flex;
+  align-items: center;
+  font-size: 20rpx;
+}
+
+/*收藏按钮  */
+.pro_heart {
+  position: absolute;
+  bottom: 60rpx;
+  right: 30rpx;
+  color: #ccc; 
+  font-size: 60rpx;
+}
+
+/*商品信息  */
+.pro_message {
+  margin: 20rpx 0 0 0;
+  background: #fff;
+  padding: 0 20rpx;
+}
+.pro_selected {
+  display: flex;
+  align-items: center;
+  padding: 30rpx 20rpx;
+  border-bottom: 1rpx solid #d7e2e8;
+  font-size: 26rpx;
+}
+
+.pro_selected text {
+  font-size: 26rpx;
+  margin-left: 15rpx;
+}
+
+.pro_sele {
+  margin-left: 40rpx;
+  font-weight: 700;
+  font-size: 26rpx;
+}
+
+/*颜色按钮  */
+.pro_color {
+  margin: 30rpx 0;
+  padding: 0 10rpx;
+  display: flex;
+  align-items: center;
+}
+.pro_selectedc {
+  font-size: 26rpx;
+}
+.pro_selectedc >text{
+  color: #666;
+}
+.pro_selectedc text {
+  display: inline-block;
+  padding: 0 20rpx;
+  background-color: #f4f8fb;
+  height: 52rpx;
+  line-height: 52rpx;
+  margin: 0 20rpx;
+  border-radius: 5rpx;
+  text-align: center;
+  color: #071220;
+}
+.pro_selectedc text.on{
+  background-color: #ff2741;
+  color: #fff;
+}
+
+/*型号样式  */
+
+.pro_selecteds {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 30rpx;
+  font-size: 26rpx;
+}
+
+.pro_selecteds .btn-radio {
+  display: inline-block;
+  height: 58rpx;
+  background-color: #f4f8fb;
+  position: relative;
+  margin-left: 41rpx;
+  border-radius: 6rpx;
+  text-align: center;
+  line-height: 58rpx;
+  color: #071220;
+  padding: 10rpx;
+  font-size: 26rpx;
+}
+
+.pro_selecteds .pro_model3 {
+  margin: 20rpx 0 0 96rpx;
+}
+
+.pro_selecteds .btn-radio-on {
+  background-color: red;
+  color: #fff;
+}
+
+.pro_selecteds .btn-radio radio {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+}
+
+/*** 数量 ***/
+.pro_num {
+  display: flex;
+  align-items: center;
+  margin: 28rpx 0 0;
+  padding: 0 10rpx 28rpx;
+}
+.pro_num text {
+  display: flex;
+  align-items: center;
+}
+.pro_num .icon-jian {
+  display: flex;
+  align-items: center;
+  font-size: 60rpx;
+  color: #666666;
+}
+.pro_num .icon-jia {
+  display: flex;
+  align-items: center;
+  font-size: 56rpx;
+  color: #666666;
+  padding-bottom: 4rpx;
+}
+.pro_num .nums {
+  color: red;
+  display: inline-block;
+  width: 90rpx;
+  text-align: center;
+  font-size: 40rpx;
+  padding-right: 5rpx;
+}
+
+/*用户评论  */
+.pro_discuss {
+  margin-top: 20rpx;
+  padding: 0 30rpx;
+  background: #fff;
+}
+.pro_user {
+  border-bottom: 1rpx solid #d7e2e8;
+  padding: 30rpx 0;
+}
+.pro_user .icon {
+  font-size: 40rpx;
+  color: #45b761;
+  display: inline-block;
+  line-height: 40rpx;
+  vertical-align: middle;
+}
+.pro_disNum {
+  margin: 0 30rpx;
+  font-size: 26rpx;
+}
+
+/*评论区域  */     
+.pro_item {
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #e1e8ee;
+}             
+.pro_reUser {
+  display: flex;
+}
+.pro_reUser image {
+  width: 76rpx;
+  height: 76rpx;
+  border: 1rpx solid #eee;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+.pro_name {
+  font-size: 26rpx;
+  margin-bottom: 16rpx;
+}
+.pro_content{
+  margin: 20rpx 0 0;
+  line-height: 40rpx;
+}
+
+.pro_time {
+  font-size: 20rpx;
+  font-weight: 700;
+}
+
+.pro_area {
+  padding: 30rpx;
+  border-bottom: 1rpx solid #d7e2e8;
+}
+
+/*底部按钮  */
+
+.pro_btn {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border: none;
+}
+
+.pro_btn button {
+  width: 375rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 30rpx;
+  margin: 0;
+  padding: 0;
+}
+
+.pro_btn button::after {
+  border: none;
+}
+
+.pro_add {
+  background-color: #fff;
+  color: red;
+  border-radius: 0;
+}
+
+.pro_buy {
+  background-color: red;
+  color: #fff;
+  border-radius: 0;
+  border: none;
+}
+
+.pro_img {
+  display: flex;
+  align-items: center;
+  padding: 10rpx;
+}
+
+.pro_img image {
+  width: 170rpx;
+  height: 170rpx;
+}
+
+/*没有数据样式  */
+
+.noMore {
+  text-align: center;
+  padding: 20rpx;
+}
+
+.noMoresed{
+  padding: 200rpx;
+}
+
+/***** 暂无商品评价 *****/
+.noData{
+  text-align: center;
+  padding: 60rpx 0;
+}

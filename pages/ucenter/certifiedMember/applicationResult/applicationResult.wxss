@@ -1,0 +1,24 @@
+@import "/res/ifont/iconfont.wxss";
+@import "/res/common.wxss";
+
+/*认证成功图  */
+.result-top image{ width: 100%; height: 454rpx;  }
+
+/*认证成功内容  */
+.apply-result{ background: #fff; padding: 0 57rpx; margin-bottom: 85rpx;}
+
+.apply-result .list{ padding: 30rpx 0; border-bottom:1rpx solid #f3f1f1;}
+.apply-result .list:last-child{ border: 0}
+.apply-result .flex_row{ align-items: center}
+.apply-result .flex_row .icon{ margin: 0 40rpx 0 10rpx; font-size: 46rpx;}
+.apply-result .flex_row .icon-shenfen-tianchong{ color: #f97461}
+.apply-result .flex_row .icon-dianhua{ color: #19cb1e}
+.apply-result .flex_row .icon-gongsi{ color: #ff485f}
+
+/*认证失败  */
+.result-fail{ align-items: center; margin-bottom: 64rpx;}
+.result-fail .icon{ font-size: 117rpx; color:#ff2741; margin: 100rpx 0 40rpx 0 }
+.result-fail .font_48_b{ margin-bottom:  45rpx }
+.result-fail .font_30{ line-height: 180%; }
+.result-bottom{ padding: 0 20rpx;}
+.result-bottom .font_color9{ padding: 55rpx 0}

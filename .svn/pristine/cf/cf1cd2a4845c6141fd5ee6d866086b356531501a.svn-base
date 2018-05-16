@@ -1,0 +1,45 @@
+// pages/ucenter/wallet/recharge/recharge.js
+var app = getApp();
+Page({
+
+  data: {
+    amount: '',      //金额
+  },
+  // 接口调用失败
+  Funfail: function (res) {
+    console.log(res);
+  },
+
+  // 加载获取数据
+  onLoad: function (options) {
+    var that = this;
+  },
+  // 获取输入框的值
+  rechar: function (e) {
+    var that = this;
+    var amount = e.detail.value;
+    that.setData({
+      amount: amount,
+    })
+  },
+
+  // 点击按钮充值
+  recharge: function (e) {
+    var that = this;
+    var amount = that.data.amount;
+    var url = app.apiUrl + "/Market/WalletDeposit";
+    var params = {
+      amount: amount,
+    }
+    console.log(amount)
+    // 调用网络接口
+    app.request.requestPostApi(url, params, this, function (res) {
+      if (res.status == 200) {
+        wx.reLaunch({
+          url: '/pages/ucenter/ucenter/ucenter',
+        })
+      }
+
+    }, this.Funfail)
+  }
+})

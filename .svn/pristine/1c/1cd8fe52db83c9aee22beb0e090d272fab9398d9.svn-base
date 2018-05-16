@@ -1,0 +1,38 @@
+// pages/ucenter/certifiedMember/applicationResult/applicationResult.js
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this;
+    var fullname = options.fullname;
+    var mobile = options.mobile;
+
+    var companys = options.companys;
+    console.log(options);
+    that.setData({
+      fullname: fullname,
+      mobile: mobile,
+      companys: companys,
+    })
+  },
+
+  // 返回个人中心
+  navback: function () {
+    wx.navigateBack()
+  },
+  // 返回主页
+  back: function () {
+    wx.reLaunch({
+      url: '/pages/index/index',
+    })
+  }
+})

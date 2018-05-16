@@ -1,0 +1,89 @@
+<view class="container">
+  <view class="userinfo">
+    <view class="flex_col">
+      <image src="{{userInfo.cover.thumb}}" mode="aspectFill"></image>
+      <text class="font_30">{{userInfo.fullname}}</text>
+    </view>
+    <view class="userapply flex_row" bindtap="userapply">
+      <text class="icon iconfont icon-huiyuan"></text>
+      <text class='font_18'>认证高级会员</text>
+    </view>
+  </view>
+  <view class="useraccount">
+    <view class="list flex_row">
+      <view class="flex_row" bindtap="wallet">
+        <text class="icon iconfont icon-qianbao"></text>
+        <view class="flex_col">
+          <text class="font_30_b"> 钱包余额</text>
+          <text class="font_26_b font_color4">￥{{wallet}}</text>
+        </view>
+      </view>
+      <view class="btndred">充值</view>
+    </view>
+    <view class="list flex_row">
+      <view class="flex_row">
+        <text class="icon iconfont icon-libao"></text>
+        <text class="font_30_b">我的礼包券</text>
+        <text class="numtip">{{packages}}</text>
+      </view>
+      <view class="btndred" bindtap="packageDetails">查看</view>
+    </view>
+  </view>
+  <view class="usercollection flex_row list" bindtap="collection">
+    <view class="flex_row">
+      <text class="icon iconfont icon-shoucang"></text>
+      <text class="font_28_b">我的收藏</text>
+    </view>
+    <text class="icon iconfont icon-you"></text>
+  </view>
+  <view class="usermanage">
+    <view class="list flex_row" bindtap="managedd">
+      <view class="flex_row">
+        <text class="icon iconfont icon-dingdan"></text>
+        <text  class="font_28_b">全部订单</text>
+      </view>
+      <text class="icon iconfont icon-you"></text>
+    </view>
+    <view class="list flex_row" bindtap="managefk">
+      <view class="flex_row">
+        <text class="icon iconfont icon-daifukuan"></text>
+        <text  class="font_28_b">待付款</text>
+      </view>
+      <view class="flex_row">
+        <text class="numtip">{{order.paymentTotal}}</text>
+        <text class="icon iconfont icon-you"></text>
+      </view>
+    </view>
+     <view class="list flex_row" bindtap="managedsh">
+      <view class="flex_row">
+        <text class="icon iconfont icon-daishouhuo"></text>
+        <text  class="font_28_b">待收货</text>
+      </view>
+      <view class="flex_row">
+        <text class="numtip">{{order.confirmTotal}}</text>
+        <text class="icon iconfont icon-you"></text>
+      </view>
+    </view>
+     <view class="list flex_row" bindtap="manageywc">
+      <view class="flex_row">
+        <text class="icon iconfont icon-yiwancheng"></text>
+        <text  class="font_28_b">已完成</text>
+      </view>
+      <text class="icon iconfont icon-you"></text>
+    </view>
+     <view class="list flex_row" bindtap="managedz">
+      <view class="flex_row">
+        <text class="icon iconfont icon-ccgl-dizhichaxun-4"></text>
+        <text  class="font_28_b">管理收货地址</text>
+      </view>
+      <text class="icon iconfont icon-you"></text>
+    </view>
+     <view class="list flex_row" bindtap="managegywm">
+      <view class="flex_row">
+        <text class="icon iconfont icon-guanyuwomen"></text>
+        <text  class="font_28_b">关于我们</text>
+      </view>
+      <text class="icon iconfont icon-you"></text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,214 @@
+/* pages/products/giftDetails/giftDetails.wxss */
+@import "/res/ifont/iconfont.wxss";
+@import "/res/common.wxss";
+
+view.color1{
+  color: #ff5a6e;
+}
+
+/**** 广告图样式 ****/
+.swiper {
+  width: 100%;
+  height: 420rpx;
+}
+.swiper image {
+  width: 100%;
+  height: 100%;
+}
+
+.gif_head{
+  margin-bottom: 100rpx;
+}
+/**** 广告图文字 ****/
+.gif_advent_text {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 26rpx 30rpx 30rpx;
+  line-height: 55rpx;
+  background: #fff;
+}
+.gifTitle{
+  font-size: 30rpx;
+  font-weight: 700;
+  margin-bottom: 20rpx;
+}
+.gifMarket {
+  display: flex;
+  align-items: center;
+}
+.gifMarket text {
+  text-decoration: line-through;
+}
+.gifPrice {
+  display: flex;
+  align-items: center;
+  font-size: 20rpx;
+}
+
+/**** 收藏按钮 ****/
+.gif_heart {
+  position: absolute;
+  bottom: 60rpx;
+  right: 30rpx;
+  color: #ccc; 
+  font-size: 60rpx;
+}
+
+/**** 礼包详情 ****/
+.gif_message {
+  margin: 20rpx 0 0 0;
+  background: #fff;
+  padding: 0 20rpx;
+}
+.gif_all {
+  border-bottom: 1rpx solid #d7e2e8;
+  font-size: 26rpx;
+  line-height: 80rpx;
+  height: 80rpx;
+  padding-left: 10rpx;
+  color: #333333;
+}
+.gif_area {
+  display: flex;
+  justify-content: space-between;
+  margin: 28rpx 0;
+  font-size: 26rpx;
+  padding: 0 10rpx;
+}
+.gif_area text:nth-child(2) {
+  color: #ff5a6e;
+}
+
+/**** 数量 ****/
+.gif_num {
+  display: flex;
+  align-items: center;
+  margin: 28rpx 0 0;
+  padding: 0 10rpx 28rpx;
+}
+.gif_num text {
+  display: flex;
+  align-items: center;
+}
+.gif_num .icon-jian {
+  display: flex;
+  align-items: center;
+  font-size: 60rpx;
+  color: #666666;
+}
+.gif_num .icon-jia {
+  display: flex;
+  align-items: center;
+  font-size: 56rpx;
+  color: #666666;
+  padding-bottom: 4rpx;
+}
+.gif_num .nums {
+  color: red;
+  display: inline-block;
+  width: 90rpx;
+  text-align: center;
+  font-size: 40rpx;
+  padding-right: 5rpx;
+}
+
+/**** 用户评论 ****/
+.gif_discuss {
+  margin-top: 20rpx;
+  padding: 0 30rpx;
+  background: #fff;
+}
+.gif_user {
+  text-align: center;
+  border-bottom: 1rpx solid #d7e2e8;
+  padding: 30rpx 0;
+}
+.gif_user text{
+  display: inline-block;
+  line-height: 40rpx;
+  vertical-align: middle;
+}  
+.gif_user .icon {
+  font-size: 40rpx;
+  color: #45b761;
+  margin-right: 22rpx;
+}
+
+/**** 评论区域 ****/
+.gif_item {
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #e1e8ee;
+}
+.gif_item_top{
+  display: flex;
+}
+.gif_item_top image {
+  width: 76rpx;
+  height: 76rpx;
+  border: 1rpx solid #eee;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+.gif_name {
+  font-size: 26rpx;
+  margin-bottom: 16rpx;
+}
+.gif_content{
+  margin: 20rpx 0 0;
+  line-height: 40rpx;
+}
+
+
+/*底部按钮  */
+
+.gif_btn {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.gif_btn button {
+  width: 376rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  border-radius: 0;
+  font-size: 35rpx;
+}
+
+.gif_add {
+  background-color: #fff;
+  color: red;
+}
+
+.gif_buy {
+  background-color: red;
+  color: #fff;
+}
+
+.gif_img {
+  display: flex;
+  padding: 20rpx;
+  align-items: center;
+}
+
+.gif_img image {
+  width: 170rpx;
+  height: 170rpx;
+}
+
+/*没有数据样式  */
+.noMore {
+  text-align: center;
+  padding: 20rpx;
+}
+
+
+/***** 暂无商品评价 *****/
+.noData{
+  text-align: center;
+  padding: 60rpx 0;
+}

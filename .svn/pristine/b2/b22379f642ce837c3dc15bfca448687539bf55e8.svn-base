@@ -1,0 +1,66 @@
+{
+  "pages": [
+    "pages/index/index",
+
+    "pages/ticket/ticketExchange/ticketExchange",
+    "pages/ticket/ticketResult/ticketResult",
+
+    "pages/products/productList/productList",
+    "pages/products/productDetails/productDetails",
+    "pages/products/giftDetails/giftDetails",
+
+    "pages/shopping/cart/cart",
+    "pages/shopping/order/order",
+    "pages/shopping/payResult/payResult",
+
+    "pages/ucenter/ucenter/ucenter",
+    "pages/ucenter/certifiedMember/application/application",
+    "pages/ucenter/certifiedMember/applicationResult/applicationResult",
+    "pages/ucenter/collection/collection",
+    "pages/ucenter/wallet/wallet/wallet",
+    "pages/ucenter/wallet/recharge/recharge",
+    "pages/ucenter/package/packageList/packageList",
+    "pages/ucenter/orderList/orderList/orderList",
+    "pages/ucenter/orderList/orderComments/orderComments",
+    "pages/ucenter/orderList/orderDetail/orderDetail",
+    "pages/ucenter/orderList/commentsResult/commentsResult",
+    "pages/ucenter/addressList/addressList/addressList",
+    "pages/ucenter/addressList/addressEdit/addressEdit",
+    "pages/ucenter/about/about"
+  ],
+  "window": {
+    "navigationBarTitleText": "万农春",
+    "navigationBarBackgroundColor": "#ff2741",
+    "backgroundColor": "#aaafbe",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#aaafbe",
+    "selectedColor": "#ff2741",
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/index-2.png",
+        "selectedIconPath": "images/index-1.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/shopping/cart/cart",
+        "iconPath": "images/index-22.png",
+        "selectedIconPath": "images/index-21.png",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/ucenter/ucenter/ucenter",
+        "iconPath": "images/me-2.png",
+        "selectedIconPath": "images/me-1.png",
+        "text": "我"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 1500
+  }
+}

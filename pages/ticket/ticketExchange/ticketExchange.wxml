@@ -1,0 +1,122 @@
+<!--pages/ticket/ticketExchange/ticketExchange.wxml-->
+<!--输入票券的问题  -->
+<view class='content' hidden='{{hidden2}}'>
+  <view class='topBody'>
+    <image src="/images/ticket.jpg"></image>
+  </view>
+
+  <view class='meddleBody'>
+    <form bindsubmit='sure'>
+      <view class='meddleBody_title'>输入卡券14位编号进行兑换</view>
+      <view class='meddleBody_input'>
+        <input type='text' name="code" placeholder='请输入编号'></input>
+      </view>
+      <view class='meddleBody_text'>用户每天限兑换三次</view>
+      <button class='btnrtred' formType="submit">确认兑换</button>
+    </form>
+  </view>
+</view>
+
+
+<!--兑换结果填写错误的结果  -->
+<view class='infoBody' hidden="{{hidden1}}">
+  <!--兑换码填写错误  -->
+  <block wx:if="{{flag == 1}}">
+    <view class='icon iconfont icon-bukaixin'></view>
+    <view class='font_40_b font_color3' style='margin-bottom:62rpx;'>未查询到票券信息！</view>
+    <view class='infoBody_view'>
+      <view>请注意检查卡券填写是否有误</view>
+      <view>30分钟内还有
+        <text class='font_color4'>2次</text>兑换机会</view>
+    </view>
+    <button class='btnrtred' bindtap='navBack'>重新填写兑换</button>
+    <button class='btnrtred' bindtap='back'>返回首页</button>
+  </block>
+
+  <!--兑换码填写错误  -->  
+  <block wx:if="{{flag == 2}}">
+    <view class='icon iconfont icon-bukaixin'></view>
+    <view class='font_40_b font_color3' style='margin-bottom:62rpx;'>未查询到票券信息！</view>
+    <view class='infoBody_view'>
+      <view>请注意检查卡券填写是否有误</view>
+      <view>30分钟内还有
+        <text class='font_color4'>1次</text>兑换机会</view>
+    </view>
+    <button class='btnrtred' bindtap='navBack'>重新填写兑换</button>
+    <button class='btnrtred' bindtap='back'>返回首页</button>
+  </block>
+
+  <!--兑换码已被兑换  -->
+  <block wx:if="{{flag == 3}}">
+    <view class='icon iconfont icon-guanbi'></view>
+    <view class='font_40_b font_color3' style='margin-bottom:62rpx;'>兑换失败</view>
+    <view class='infoBody_view'>
+      <view>该票券已被兑换过</view>
+      <view>30分钟内还有
+        <text class='font_color4'>2次</text>兑换机会</view>
+    </view>
+    <button class='btnrtred' bindtap='navBack'>重新填写兑换</button>
+    <text class='font_36 font_color2' bindtap='back'>返回主页</text>
+  </block>
+
+  <!--兑换码已被兑换  -->  
+  <block wx:if="{{flag == 4}}">
+    <view class='icon iconfont icon-guanbi'></view>
+    <view class='font_40_b font_color3' style='margin-bottom:62rpx;'>兑换失败</view>
+    <view class='infoBody_view'>
+      <view>该票券已被兑换过</view>
+      <view>30分钟内还有
+        <text class='font_color4'>1次</text>兑换机会</view>
+    </view>
+    <button class='btnrtred' bindtap='navBack'>重新填写兑换</button>
+    <text class='font_36 font_color2' bindtap='back'>返回主页</text>
+  </block>
+
+  <!--兑换结果成功  -->
+  <block wx:if="{{flag == 5 &&flagList.type=='product'}}">
+    <view class='icon iconfont icon-kaixin'></view>
+    <view class='font_40_b font_color3' style='margin-bottom:22rpx;'>兑换成功</view>
+    <view class='infoBody_view'>
+      <view>恭喜获得了</view>
+    </view>
+    <block wx:if="{{flag == 5 &&flagList.type == 'product'}}">
+      <view class='infoBody_list'>
+        <view>
+          <image src='{{flagList.product.cover}}'></image>
+        </view>
+        <view>
+          <view class='font_30_b font_color3 lihe_54'>{{flagList.product.title}}</view>
+          <view class='font_color9 lihe_40' style='height:80rpx;'>{{flagList.product.content}}</view>
+          <view class='font_color9 lihe_54'>{{flagList.product.start_date}}-{{flagList.product.stop_date}}</view>
+        </view>
+      </view>
+    </block>
+    <block wx:if="{{flag == 5 && flagList.type == 'golden'}}">
+      <view class='infoBody_ticket'>
+        <view>
+          <image src='/images/ticketResult.png'></image>
+        </view>
+        <text class='font_30_b'>免费金券： </text>
+        <text class='font_color4' style='font-size:64rpx;'>￥{{flagList.golden.price}}</text>
+      </view>
+      <view class='infoBody_tip' bindtap='wallet'>您可以进入
+        <text class='font_color4'> “钱包余额” </text>查看</view>
+    </block>
+    <button class='btnrtred' bindtap='pakege'>进入我的礼包</button>
+    <text class='font_36 font_color2' bindtap='back'>返回主页</text>
+  </block>
+
+  <!--兑换结果失败  -->
+  <block wx:if="{{flag==6}}">
+    <view class='icon iconfont icon-guanbi'></view>
+    <view class='font_40_b font_color3' style='margin-bottom:62rpx;'>兑换失败</view>
+    <view class='infoBody_view'>
+      <view>兑换次数已达上线</view>
+      <view>请于今日
+        <text class='font_color4'>12：00</text>再次兑换</view>
+    </view>
+    <button class='btnrtred' bindtap='back'>返回首页</button>
+  </block>
+
+
+</view>

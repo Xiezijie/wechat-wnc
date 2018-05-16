@@ -1,0 +1,94 @@
+/* pages/ucenter/wallet/wallet.wxss */
+@import "/res/common.wxss";
+@import "/res/ifont/iconfont.wxss";
+
+.font_44_b{
+  font-size: 44rpx;
+  font-weight: 700;
+}
+.color1{
+  color: #45b761;
+}
+
+/*** 账户余额 ***/
+.topBody{
+  background-color: #fff;
+  padding: 60rpx 0;
+  text-align: center;
+  font-size: 30rpx;
+  color: #000;
+  font-weight: 700;
+}
+
+.middleBody{
+  margin: 24rpx 0 100rpx;
+  background-color: #fff;
+}
+
+/*** 查询按钮 ***/
+.formBody{
+  width: calc(100% - 60rpx);
+  margin: 0 30rpx;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #e3eaf0;
+}
+.formBody_top{
+  flex: 1;
+  display: flex;
+  line-height: 90rpx;
+  height: 90rpx;
+  font-size: 28rpx;
+}
+.formBody_top picker{
+  margin: 0 16rpx;
+}
+.btndred{
+  margin: 20rpx 0; 
+  width: 130rpx;
+  height: 52rpx;
+  line-height: 52rpx;
+  font-size: 24rpx;
+}
+/*** 使用记录 ***/
+.box{
+  margin: 0 30rpx;
+}
+.box_list{
+  display: flex;
+  justify-content: space-between;
+  padding: 22rpx 0;
+  border-bottom: 1px solid #e3eaf0;
+}
+.box_list text{
+  display: block;
+  line-height: 40rpx;
+}
+.box_right{
+  text-align: right;
+}
+/*** 没有记录 ***/
+.nodata{
+  padding: 150rpx 0;
+  text-align: center;
+}
+.nodata .icon{
+  font-size: 200rpx;
+  display: block;
+  padding-bottom: 20rpx;
+  color: #ccd1dd;
+}
+.nodata-text{
+  width: 515rpx;
+  display: inline-block;
+  margin: auto;
+  text-align: center;
+  font-weight: normal;
+}
+
+/*** 点我充值 ***/
+.bottomBody{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

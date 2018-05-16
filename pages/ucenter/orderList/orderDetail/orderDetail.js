@@ -1,0 +1,121 @@
+// pages/ucenter/orderList/orderDetail/orderDetail.js
+var app = getApp();
+Page({
+  data: {
+    floatBody: true,
+    checked: true,
+
+    orderList: [],         //存储订单信息
+    start: 1,             //请求页数
+    perpage: 10,          //每页请求数量
+    ticketList: [],        //存放礼包券
+    discountId: 0,         //存放券票id
+    total: 0,            //订单总金额
+    contactId: 0,          //存放收货地址id
+    orderddId: 0,          //订单id
+  },
+
+  /********  接口请求失败  **********/
+  funFail: function (res) {
+    console.log("failFun", res);
+  },
+
+  onLoad: function (options) {
+    console.log(options);
+    var that = this;
+    if (options.hasOwnProperty('orderddId') || options.orderddId != undefined) {
+      var orderddId = options.orderddId;
+      that.setData({
+        orderddId: orderddId
+      })
+      // 获取订单信息
+      that.getOrderInfo();
+    }
+  },
+
+  //获取订单详情
+  getOrderInfo: function () {
+    var that = this;
+    var orderddId = that.data.orderddId;
+    var url = app.apiUrl + "/Market/OrderddDetail";
+    var params = { orderddId: orderddId };
+    app.request.requestGetApi(url, params, that, function (res) {
+      console.log(res);
+      var list = res.result;
+      var total = 0;
+      if (res.status == 200) {
+        if (list != null) {
+          //转化时间戳处理
+          list.submit_time = app.toDate(list.submit_time, 'time');
+          list.amount = parseFloat(list.amount).toFixed(2);
+          list.freight = parseFloat(list.freight).toFixed(2);
+          list.total = parseFloat(list.total).toFixed(2);
+        }
+        console.log(total)
+        that.setData({
+          total: total,
+          orderList: list,
+          paymentId: res.result.payment_identity,
+        })
+        console.log(typeof that.data.orderList.amount);
+      } else {
+        console.log(res);
+      }
+    }, that.funFail)
+  },
+
+  //去评价
+  evaluate: function(){
+    var that = this;
+    var orderddId = that.data.orderddId;
+    wx.reLaunch({
+      url: '/pages/ucenter/orderList/orderComments/orderComments?orderddId=' + orderddId,
+    })
+  },
+
+  //确认收货
+  receiving: function (e) {
+    var that = this
+    var id = that.data.orderddId;
+    console.log(id)
+    wx.showModal({
+      content: '是否确认收货操作',
+      success: function (res) {
+        if (res.confirm) {
+          var url = app.apiUrl + '/Market/OrderddReceipt';
+          var params = {
+            orderddId: id,
+          };
+          app.request.requestGetApi(url, params, this, function (res) {
+            console.log(res);
+            var perpage = that.data.perpage;
+            var res = JSON.parse(decodeURIComponent(JSON.stringify(res)));     //解决乱码问题
+            if (res.status == 200) {
+              wx.showToast({
+                title: "成功收货",
+                duration: 1000
+              })
+              var perpage = that.data.perpage;
+              var start = 1;
+              var type = 2;
+              //获取用户信息
+              that.getinfo(type, start, perpage);
+
+            }
+            else if (res.status == 4040) {
+              wx.showToast({
+                title: "订单不存在",
+                duration: 1000
+              })
+            }
+            else {
+              console.log(res.msg);
+            }
+          }, this.failc)
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+})

@@ -1,0 +1,164 @@
+// pages/ucenter/ucenter/ucenter.js
+var app = getApp()
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    userInfo: [],//用户信息
+    order: [],//用户信息
+    wallet: '',//钱包余额
+    packages: 0,//礼包数
+  },
+
+  //  进入页面初次加载用户信息
+  onLoad: function (options) {
+    var that = this;
+    var params = {};
+    var paramsp = { orderType: 1 };
+    //  用户信息
+    var urlu = app.apiUrl + '/Consumer/UserInfo';
+    app.request.requestGetApi(urlu, params, this, function (res) {
+      console.log(res);
+      var res = JSON.parse(decodeURIComponent(JSON.stringify(res)));     //解决乱码问题
+      if (res.status == 200) {
+        if (res.result != null) {
+          that.setData({
+            userInfo: res.result
+          })
+          console.log(res.result);
+        }
+      }
+      else {
+        console.log(res.msg);
+      }
+    }, this.failUser)  //路径，参数，this，成功函数，失败函数
+
+    // 用户订单
+    var urlo = app.apiUrl + '/Market/OrderddWait';
+    app.request.requestGetApi(urlo, params, this, function (res) {
+      console.log(res);
+      var res = JSON.parse(decodeURIComponent(JSON.stringify(res)));     //解决乱码问题
+      if (res.status == 200) {
+        if (res.result != null) {
+          that.setData({
+            order: res.result
+          })
+        }
+      }
+      else {
+        console.log(res.msg);
+      }
+    }, this.failOrder)  //路径，参数，this，成功函数，失败函数
+
+
+    // 钱包信息
+    var urlw = app.apiUrl + '/Market/WalletDetail';
+    app.request.requestGetApi(urlw, params, this, function (res) {
+      console.log(res);
+      var res = JSON.parse(decodeURIComponent(JSON.stringify(res)));     //解决乱码问题
+      if (res.status == 200) {
+        if (res.result != null) {
+          that.setData({
+            wallet: res.result.wallet.amount
+          })
+        }
+      }
+      else {
+        console.log(res.msg);
+      }
+    }, this.failOrder)  //路径，参数，this，成功函数，失败函数
+
+
+    // 礼包信息
+    var urlp = app.apiUrl + '/Market/OrderddList';
+    app.request.requestGetApi(urlp, paramsp, this, function (res) {
+      console.log(res);
+      var res = JSON.parse(decodeURIComponent(JSON.stringify(res)));     //解决乱码问题
+      if (res.status == 200) {
+        if (res.result != null) {
+          that.setData({
+            packages: res.total
+          })
+        }
+      }
+      else {
+        console.log(res.msg);
+      }
+    }, this.failOrder)  //路径，参数，this，成功函数，失败函数
+  },
+
+
+
+
+
+  // 认证会员链接
+  userapply: function () {
+    wx.navigateTo({
+      url: '/pages/ucenter/certifiedMember/application/application',
+    })
+  },
+  // 我的钱包
+  wallet: function () {
+    wx.navigateTo({
+      url: '/pages/ucenter/wallet/wallet/wallet',
+    })
+  },
+  // 充值按钮
+  rechar: function () {
+    wx.navigateTo({
+      url: '/pages/ucenter/wallet/recharge/recharge',
+    })
+  },
+  // 我的礼包卷
+  packageDetails: function () {
+    wx.navigateTo({
+      url: '/pages/ucenter/package/packageList/packageList',
+    })
+  },
+  // 我的收藏链接
+  collection: function () {
+    wx.navigateTo({
+      url: '/pages/ucenter/collection/collection',
+    })
+  },
+
+  // 全部订单
+  managedd: function () {
+    wx.navigateTo({
+      url: '/pages/ucenter/orderList/orderList/orderList',
+    })
+  },
+  // 待付款
+  managefk: function () {
+    wx.navigateTo({
+      url: '/pages/ucenter/orderList/orderList/orderList?currentTab=1',
+    })
+  },
+  // 待收货
+  managedsh: function () {
+    wx.navigateTo({
+      url: '/pages/ucenter/orderList/orderList/orderList?currentTab=2',
+    })
+  },
+  // 已完成
+  manageywc: function () {
+    wx.navigateTo({
+      url: '/pages/ucenter/orderList/orderList/orderList?currentTab=3',
+    })
+  },
+  // 管理收货地址
+  managedz: function () {
+    wx.navigateTo({
+      url: '/pages/ucenter/addressList/addressList/addressList',
+    })
+  },
+  // 关于我们
+  managegywm: function () {
+    wx.navigateTo({
+      url: '/pages/ucenter/about/about',
+    })
+  },
+
+})

@@ -1,0 +1,74 @@
+<!--pages/ucenter/orderList/orderDetail/orderDetail.wxml-->
+<view class='content'>
+  <!-- 商品列表 -->
+  <view class='productBody'>
+    <view class='productBody_title'>
+      <text>订单编号：{{orderList.code}}</text>
+      <text class='color2'>{{orderList.submit_time}}</text>
+    </view>
+    <view class='product_item' wx:for="{{orderList.shopping}}" wx:key="{{index}}">
+      <view class='product_item_left'>
+        <image src='{{item.cover}}'></image>
+      </view>
+      <view class='product_item_right'>
+        <view class='product_item_right_title'>{{item.title}}</view>
+        <view class='product_item_right_amount'>商城价：
+          <text>￥{{item.univalent}}</text>
+          <text style='color: #000; margin-left:10rpx;'>×{{item.quantity}}</text>
+        </view>
+        <view class='product_item_right_price'>商场价：
+          <s>￥{{item.market_price}}</s>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 收货地址 -->
+  <view class='addressBody' style="background-image: url('/images/address.jpg')">
+    <view class='font_color2 font_30_b'>{{orderList.contact.fullname}} {{orderList.contact.telephone}}</view>
+    <view class='font_26' style='color:#888;'>{{orderList.contact.address}}</view>
+  </view>
+
+
+  <!-- 优惠卡 -->
+  <view class='cardBody'>
+    <view>大礼包券</view>
+    <text wx:if="{{orderList.discount != '' && orderList.discount != null}}">{{orderList.discount.title}}</text>
+    <text wx:else class='cardBody_title'>无</text>
+  </view>
+
+  <!-- 金额详情 -->
+  <view class='detailBody'>
+    <view>
+      <text>商品金额</text>
+      <text class='font_color4'>￥{{orderList.total}}</text>
+    </view>
+    <view>
+      <text>运费</text>
+      <text class='font_color4'>+￥{{orderList.freight}}</text>
+    </view>
+    <view>
+      <text>礼品卡</text>
+      <text class='color1'>-￥{{orderList.discount.univalent}}</text>
+      <!-- <text class='color1' wx:if="{{orderList.discount != ''}}" wx:else>-￥0.00</text> -->
+    </view>
+    <view>
+      <text></text>
+      <text class='font_color4'>实付金额：￥{{orderList.amount}}</text>
+    </view>
+  </view>
+
+  <!-- 余额支付 -->
+  <view class='payBody'>
+    <view>支付方式：</view>
+    <view>使用{{orderList.payment.title}}</view>
+  </view>
+</view>
+
+<!-- 底部区域 -->
+<view class='bottomBody'>
+  <view class='btnrbred' wx:if="{{orderList.status == 3}}" style='background: #999;'>确认收货</view>
+  <view class='btnrbred' wx:if="{{orderList.status == 2}}" bindtap='receiving'>确认收货</view>
+  <view class='btnrbred' wx:elif="{{orderList.status == 1}}" bindtap='evaluate'>去评价</view>
+  <view class='btnrbred' wx:elif="{{orderList.status == 0}}" style='background: #999;'>已完成</view>
+</view>

@@ -1,0 +1,32 @@
+<view class="container">
+  <view class="apply-top">
+    <image src="/images/apply-ser.jpg" mode="aspectFill"></image>
+  </view>
+  <view class="apply-form">
+    <form bindsubmit="apply">
+      <view class="list">
+        <input name="fullname" placeholder="姓名" value='{{name}}'></input>
+      </view>
+      <view class="list">
+        <input bindblur='blur' name="mobile" type='number' maxlength='11' placeholder="请填写公司使用手机号"></input>
+      </view>
+      <view class="list flex_row">
+        <input name="code" placeholder="输入验证码" value='{{code}}'></input>
+        <view class="btndredx" bindtap='getTel'>{{codes}}</view>
+      </view>
+      <view class="list companypost">
+        <input name="company" value="{{companyName}}" placeholder="选择公司" disabled catchtap="company"></input>
+        <text hidden="{{companytop}}" class="icon iconfont icon-xiala1"></text>
+        <text hidden="{{companybottom}}" class="icon iconfont icon-xiala"></text>
+        <view class="companylist" hidden="{{companylist}}">
+          <block wx:for="{{comList}}" wx:key="{{index}}">
+            <view class="companyl" data-name="{{item.title}}" data-id='{{item.identity}}' bindtap="companyls">{{item.title}}</view>
+          </block>
+
+        </view>
+      </view>
+      <button class="btnrtred font_36_b" form-type="submit">提交验证</button>
+    </form>
+
+  </view>
+</view>

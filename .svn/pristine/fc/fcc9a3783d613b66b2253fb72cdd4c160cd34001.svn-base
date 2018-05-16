@@ -1,0 +1,229 @@
+// pages/shopping/order/order.js
+var app = getApp();
+Page({
+  data: {
+    floatBody: true,
+    checked: true,
+
+    orderList:[],         //存储订单信息
+    start: 1,             //请求页数
+    perpage: 10,          //每页请求数量
+    ticketList:[],        //存放礼包券
+    discountId:0,         //存放券票id
+    total: 0 ,            //订单总金额
+    contactId:0,          //存放收货地址id
+  },
+
+  /********  接口请求失败  **********/
+  funFail: function (res) {
+    console.log("failFun", res);
+  },
+
+  onLoad: function (options) {
+    console.log(options);
+    var that = this
+    if (options.hasOwnProperty('orderddId') || options.orderddId != undefined){
+      var orderddId = options.orderddId;
+      that.setData({
+        orderddId: orderddId
+      })
+      // 获取订单信息
+      that.getOrderInfo();
+
+      //获取钱包信息
+      var url_wallet = app.apiUrl + '/Market/WalletDetail';
+      var params_wallet = {};
+      app.request.requestPostApi(url_wallet, params_wallet, this, function (res) {
+        if (res.status == 200) {
+          that.setData({
+            walletList: res.result
+          })
+        } else {
+          console.log(res);
+        }
+      }, that.failFun)
+
+      //获取礼包券
+      var start = that.data.start;
+      var perpage = that.data.perpage;
+      var url_tikect = app.apiUrl + '/Coupon/TicketList';
+      var params_tikect = { start: start, perpage: perpage};
+      app.request.requestPostApi(url_tikect, params_tikect, this, function (res) {
+        if (res.status == 200) {
+          that.setData({
+            ticketList: res.result
+          });
+          console.log(that.data.ticketList);
+        } else {
+          console.log(res);
+        }
+      }, that.failFun)
+    }
+  },
+
+  //获取订单详情
+  getOrderInfo: function () {
+    var that = this;
+    var orderddId = that.data.orderddId;
+    var url = app.apiUrl + "/Market/OrderddDetail";
+    var params = { orderddId: orderddId };
+    app.request.requestGetApi(url, params, that, function (res) {
+      console.log(res);
+      var list = res.result;
+      var total = 0;
+      if (res.status == 200) {
+        if (list != null) {
+          //转化时间戳处理
+          list.confirm_time = toDate(list.confirm_time);
+          list.amount = parseFloat(list.amount).toFixed(2);
+          list.freight = parseFloat(list.freight).toFixed(2);
+
+          if (list.discount.hasOwnProperty("univalent")) {
+            list.discount.univalent = parseFloat(list.discount.univalent).toFixed(2);
+            total = (parseFloat(list.amount) + parseFloat(list.freight) - parseFloat(list.discount.univalent)).toFixed(2);
+            that.setData({
+              discountId: list.discount.identity
+            })
+          }else{
+            total = (parseFloat(list.freight) + parseFloat(list.amount)).toFixed(2);
+          }
+        }
+        console.log(total)
+        that.setData({
+          total: total,
+          orderList: list,
+          paymentId: res.result.payment_identity,
+        })
+        console.log(typeof that.data.orderList.amount);
+      } else {
+        console.log(res);
+      }
+    }, that.funFail)
+  },
+
+  //跳转到收货地址页面
+  address: function (res) {
+    var that = this;
+    var orderddId = that.data.orderddId;
+    wx.navigateTo({
+      url: '/pages/ucenter/addressList/addressList/addressList?orderddId=' + orderddId,
+    })
+  },
+
+  //点击 礼品卡 按钮
+  floatBody: function () {
+    var that = this;
+    that.setData({
+      floatBody: false,
+    })
+  },
+
+  //选择优惠礼包
+  radioChange: function(e){
+    console.log(e);
+    var that = this;
+    var id = e.detail.value;
+    that.setData({
+      discountId: id,
+    })
+  },
+
+  //点击 取消 按钮
+  cancel: function () {
+    var that = this;
+    that.setData({
+      floatBody: true,
+    })
+  },
+
+  //点击 选好了 按钮
+  sure: function (e) {
+    var that = this;
+    var discountId = that.data.discountId;
+    var orderddId = that.data.orderddId;
+    var val = e.detail.value.ticket;
+    if(val == ''){
+      wx.showToast({
+        title: '请选择礼包卡',
+      })
+    } else {
+      // 修改订单信息
+      var url = app.apiUrl + "/Market/OrderddChange";
+      var params = { orderddId: orderddId, "property[discount_identity]": discountId };
+      app.request.requestPostApi(url, params, that, function (res) {
+        var list = res.result;
+        if (res.status == 200) {
+          // 获取订单信息
+          that.getOrderInfo();
+
+          that.setData({
+            floatBody: true,
+          })
+        } else {
+          console.log(res);
+        }
+      }, that.funFail)
+    }
+  },
+
+  //是否使用账户余额
+  radio: function (e) {
+    console.log(e);
+    var that = this;
+    var flag = e.currentTarget.dataset.falg;
+    console.log(flag);
+    if (flag) {
+      that.setData({
+        checked: true,
+      })
+    } else {
+      that.setData({
+        checked: false,
+      })
+    }
+  },
+
+  //立即支付
+  pay: function () {
+    var that = this;
+    var orderddId = that.data.orderddId;
+    var paymentId = that.data.paymentId;
+    var discountId = that.data.discountId;
+    if (that.data.orderList.contact.hasOwnProperty("identity")){
+      console.log(orderddId);
+      console.log(paymentId);
+      console.log(discountId);
+      console.log(contactId);
+      var contactId = that.data.orderList.contact.identity;
+      //订单确认
+      var url = app.apiUrl + '/Market/OrderddSave';
+      var params = {
+        discountId: discountId,
+        paymentId: paymentId,
+        orderddId: orderddId,
+        contactId: contactId
+      };
+      app.request.requestPostApi(url, params, this, function (res) {
+        wx.reLaunch({
+          url: '/pages/shopping/payResult/payResult?status=' + res.status,
+        })
+      }, that.failFun)
+    }else{
+      wx.showToast({
+        title: '请选择收货地址',
+      })
+    }
+  },
+})
+
+//时间戳转换时间  
+function toDate(number) {
+  var n = number * 1000;
+  var date = new Date(n);
+  var Y = date.getFullYear() + '-';
+  var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+  var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate() + " ";
+  var h = " " + date.getHours() + ":";
+  var m = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+  return (Y + M + D + h + m)
+}  

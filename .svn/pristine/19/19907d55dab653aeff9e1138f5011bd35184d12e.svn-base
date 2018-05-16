@@ -1,0 +1,41 @@
+/* pages/ucenter/about/about.wxss */
+.container {
+  padding: 0;
+  background: #f3f8f8;
+}
+
+/* 青春派标题 */
+.about-main {
+  padding: 0 30rpx;
+  font-weight: 700;
+  background: #fff;
+  text-align: center;
+}
+.about-main text{
+  display: block;
+  border-bottom: 1rpx solid #d8e2e9;
+  padding: 44rpx 0;
+  font-size: 30rpx;
+  color: #fd393d;
+}
+
+/*互联网介绍  */
+
+.about-foot {
+  padding: 30rpx;
+  height: 900rpx;
+  color: #646464;
+  background: #fff; 
+  line-height: 60rpx;
+  font-size: 26rpx;
+}
+.about-foot text{
+  display: inline-block;
+  text-indent: 1.5rem;
+}
+
+.container .con-about {
+  background: #fd393d;
+  padding: 0 30rpx;
+  background-size: auto;
+}

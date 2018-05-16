@@ -1,0 +1,113 @@
+<!--pages/products/productDetails/productDetails.wxml-->
+<scroll-view bindscrolltolower='loadMore' scroll-y style='height:{{windowHeight}}px;'>
+  <view class='pro_head'>
+    <view class='pro_advent'>
+      <!--广告图  -->
+      <block wx:if="{{proList!=null}}">
+        <swiper class='swiper' indicator-dots='true' interval='3000' duration='500' autoplay='true'>
+          <block wx:for="{{proList.attach}}" wx:key="{{index}}">
+            <swiper-item>
+              <image src='{{item.source}}' data-id='{{item.identity}}' mode='aspectFill'></image>
+            </swiper-item>
+          </block>
+        </swiper>
+      </block>
+      <!--没有数据的时候  -->
+      <view wx:else>
+        <view class='noImage'>
+          <text class='icon iconfont icon-tupian'></text>
+        </view>
+      </view>
+    </view>
+
+    <!--广告图下面的文字  -->
+    <view class='pro_advent_text'>
+      <view class='pro_pack'>
+        <view class='proTitle'>{{proList.title}}</view>
+        <view class='proPrice'>商城价：
+          <text class='font_color4 font_30_b'>￥{{proList.univalent}} / 份</text>
+        </view>
+        <view class='proMarket font_color5'>市场价：
+          <text class='font_color5'>￥{{proList.market_price}}</text>
+        </view>
+        <view class="pro_heart iconfont icon icon-shoucang {{collectId == 0 ? '' : 'color1'}}" bindtap='collect'></view>
+      </view>
+    </view>
+
+    <!-- 商品信息 -->
+    <view class='pro_message'>
+      <view class='pro_selected'>
+        <view class='font_color9'>{{tip}}</view>
+        <view class='pro_sele'>
+          <block wx:for="{{data}}" wx:key="{{index}}" wx:for-item="attr" wx:for-index="attrIndex">
+            <block wx:for="{{attr.attaribute}}" wx:key="{{index}}">
+              <text wx:if="{{attr.type == item.identity}}">{{item.title}}   </text>
+            </block>
+          </block>
+          <text wx:if="{{num != 0}}">{{num}}个</text>
+        </view>
+      </view>
+
+      <!-- 商品规格选择-->
+      <view class='pro_color' wx:for="{{data}}" wx:key="{{index}}" wx:for-item="attr" wx:for-index="attrIndex">
+        <text class='font_color9'>{{attr.title}}</text>
+        <view class='pro_selectedc'>
+          <text class="{{ attr.type == item.identity  ? 'on' : ''}}" data-flag="{{attrIndex}}" data-num="{{attr.identity}}" data-id="{{item.identity}}" wx:for="{{attr.attaribute}}" wx:key="{{index}}" bindtap="radioTab">{{item.title}}</text>
+        </view>
+      </view>
+
+      <!-- 数量 -->
+      <view class='pro_num'>
+        <text class='font_color9' style='padding-right:36rpx;'>数量</text>
+        <text class='iconfont icon icon-jian' bindtap='bindJian'></text>
+        <text class='nums'>{{num}}</text>
+        <text class='iconfont icon icon-jia' bindtap='bindJia'></text>
+      </view>
+    </view>
+
+    <!--用户评论  -->
+    <view class='pro_discuss'>
+      <view class='pro_user'>
+        <text class='iconfont icon icon-pinglun'></text>
+        <text class='pro_disNum'>用户评论 ({{proList.commentnum}})</text>
+      </view>
+
+      <!--评论区域  -->
+      <block wx:if="{{proLists != null}}">
+        <view class='pro_item' wx:for="{{proLists}}" wx:key="{{prolist}}" wx:for-item="con">
+          <view class='pro_reUser'>
+            <image src='{{con.cover}}' mode='aspectFill'></image>
+            <!--评论内容  -->
+            <view>
+              <view class='pro_name'>{{con.fullname}}</view>
+              <view class='font_20'>{{con.dateline}}</view>
+            </view>
+          </view>
+
+          <!--评论内容  -->
+          <view class='pro_content'>{{con.content}}</view>
+
+          <!-- 评论图片 -->
+          <block wx:for="{{con.attachs}}" wx:key="{{attachs}}">
+            <!--评论内容  -->
+            <view class='pro_img'>
+              <image catchtap='' src='{{proList.cover}}' data-id='{{}}' class='' mode='aspectFill'></image>
+            </view>
+          </block>
+        </view>
+
+        <!--显示更多  -->
+        <view hidden='{{hidden1}}' class='noMore'>
+          <text>拉到底了.没有啦~</text>
+        </view>
+      </block>
+      <!-- 暂无用户评价 -->
+      <view wx:else class='noData'>暂无用户评价</view>
+    </view>
+  </view>
+</scroll-view>
+<!--底部按钮  -->
+<view class='pro_btn'>
+  <button data-id='{{proList.identity}}' bindtap='proBtn' class='pro_add'>添加购物车</button>
+  <button data-id='{{proList.identity}}' catchtap='proBuy' class='pro_buy'>立即购买</button>
+</view>

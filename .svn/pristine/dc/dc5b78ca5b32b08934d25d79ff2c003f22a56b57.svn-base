@@ -1,0 +1,112 @@
+<!--pages/shopping/order/order.wxml-->
+<view class='content'>
+  <!-- 收货地址 -->
+  <!-- <view class='img'><image src="/images/address.jpg"></image></view> -->
+  <view class='addressBody' bindtap='address' style="background-image: url('/images/address.jpg')">
+    <block wx:if="{{orderList.contact != ''}}">
+      <view class='font_color2 font_30_b'>{{orderList.contact.fullname}} {{orderList.contact.telephone}}</view>
+      <view class='font_26' style='color:#888;'>{{orderList.contact.address}}</view>
+    </block>
+    <block wx:else>
+      <view class='noAddress'>请选择收货地址</view>
+    </block>
+      <text class='icon iconfont icon-you'></text>
+  </view>
+
+  <!-- 商品列表 -->
+  <view class='productBody'>
+    <view class='productBody_title'>
+      <view>订单编号：{{orderList.code}}</view>
+      <view class='color2'>{{timer}}</view>
+    </view>
+    <view class='product_item' wx:for="{{orderList.shopping}}" wx:key="{{index}}">
+      <view class='product_item_left'>
+        <image src='{{item.cover}}'></image>
+      </view>
+      <view class='product_item_right'>
+        <view class='product_item_right_title'>{{item.title}}</view>
+        <view class='product_item_right_amount'>商城价：
+          <text>￥{{item.univalent}}</text>
+          <text style='color: #000; margin-left:10rpx;'>×{{item.quantity}}</text>
+        </view>
+        <view class='product_item_right_price'>市场价：
+          <s>￥{{item.market_price}}</s>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 优惠卡 -->
+  <view class='cardBody' bindtap='floatBody'>
+    <view wx:if="{{orderList.discount != ''}}">
+      <radio-group class="radio-group" bindchange="radioChange">
+        <label class="radio">
+           <radio value="" checked/> 
+          <text>{{orderList.discount.title}}</text>
+        </label>
+      </radio-group>
+    </view>
+    <text wx:else class='cardBody_title'>无可用礼品卡</text>
+    <text class='icon iconfont icon-you'></text>
+  </view>
+
+  <!-- 金额详情 -->
+  <view class='detailBody'>
+    <view>
+      <text>商品金额</text>
+      <text class='font_color4'>￥{{orderList.total}}</text>
+    </view>
+    <view>
+      <text>运费</text>
+      <text class='font_color4'>+￥{{orderList.freight}}</text>
+    </view>
+    <view>
+      <text>礼品卡</text>
+      <text class='color1' wx:if="{{orderList.discount == ''}}">-￥0.00</text> 
+      <text class='color1' wx:else>-￥{{orderList.discount.univalent}}</text>
+    </view>
+    <view>
+      <text></text>
+      <text class='font_color4'>实付金额：￥{{orderList.amount}}</text>
+    </view>
+  </view>
+
+  <!-- 余额支付 -->
+  <view class='payBody' wx:if="{{walletList.wallet.amount != 0}}">
+    <radio-group class="radio-group">
+      <label class="radio font_26">
+        <radio data-falg="{{!checked}}" checked="{{checked}}" bindtap='radio' /> 优先使用账户余额支付：
+      </label>
+    </radio-group>
+    <text class='color1 font_26'>￥{{walletList.wallet.amount}}</text>
+  </view>
+</view>
+
+<!-- 底部区域 -->
+<view class='bottomBody'>
+  <view class='btnrbred' bindtap='pay'>立即支付</view>
+</view>
+
+<!-- 选择礼包（浮动层） -->
+<view class='floatBody' hidden='{{floatBody}}'>
+  <form bindsubmit='sure'>
+    <view class='floatBody_top'>
+      <view class='floatBody_top_title'>选择礼包券</view>
+      <radio-group wx:if="{{ticketList != null && ticketList != ''}}" name="ticket" class="radio-group" bindchange="radioChange">
+        <label class="radio floatBody_top_item" wx:for="{{ticketList}}" wx:key="{{index}}">
+          <view class='item_left'>
+            <image src='/images/order.png'></image>
+          </view>
+          <view class='item_middle'>
+            <view>{{item.product.title}}</view>
+            <view class='font_20 font_color8'>{{item.product.content == '' ? '暂无券票介绍' : item.product.content}}</view>
+          </view>
+          <radio class='item_right' value="{{item.identity}}" />
+        </label>
+      </radio-group>
+      <view wx:else class='noTicket'>暂无券票</view>
+    </view>
+    <button class='floatBody_bottom' wx:if="{{ticketList != null && ticketList != ''}}" formType="submit">选好了</button>
+    <view class='floatBody_bottom' wx:else bindtap='cancel'>取消</view>
+  </form>
+</view>

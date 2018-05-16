@@ -1,0 +1,246 @@
+var app = getApp()
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    currentTab: 0,                             // tab切换  
+    windowHeight: 0,                           //获取屏幕高度  
+    cliHeight: 0,                              //获取高度  
+    packageList: [{
+      product: { title: "中秋节员工礼包", address: "中秋节大礼包！原价888的礼包中秋礼包中秋礼包中秋礼包中秋礼包中秋", start_date: "2017/09/18", stop_date: "2017/09/18", }
+    }, {
+      product: { title: "中秋节员工礼包", address: "中秋节大礼包！原价888的礼包中秋礼包中秋礼包中秋礼包中秋礼包中秋", start_date: "2017/09/18", stop_date: "2017/09/18", }
+      }, {
+        product: { title: "中秋节员工礼包", address: "中秋节大礼包！原价888的礼包中秋礼包中秋礼包中秋礼包中秋礼包中秋", start_date: "2017/09/18", stop_date: "2017/09/18", }
+    }, {
+      product: { title: "中秋节员工礼包", address: "中秋节大礼包！原价888的礼包中秋礼包中秋礼包中秋礼包中秋礼包中秋", start_date: "2017/09/18", stop_date: "2017/09/18", }
+      }, {
+        product: { title: "中秋节员工礼包", address: "中秋节大礼包！原价888的礼包中秋礼包中秋礼包中秋礼包中秋礼包中秋", start_date: "2017/09/18", stop_date: "2017/09/18", }
+    }, {
+      product: { title: "中秋节员工礼包", address: "中秋节大礼包！原价888的礼包中秋礼包中秋礼包中秋礼包中秋礼包中秋", start_date: "2017/09/18", stop_date: "2017/09/18", }
+    }],                             //全部列表
+    packageLists: [],                             //未使用列表
+    packageListf: [],                            //已失效列表
+
+
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this;
+    //获取屏幕高度  
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          cliHeight: res.windowHeight - 56
+        });
+      }
+    });
+
+    // 兑换码列表
+    var url = app.apiUrl + '/Material/TicketReceiveList';
+    var params = { status: 0 }
+    app.request.requestGetApi(url, params, this, this.successPtz, this.failPtz)
+  },
+
+  // 拼团中回调
+  successPtz: function (res) {
+    console.log(res);
+    var that = this;
+    if (res.status == 200) {
+      if (res.result != null) {
+        //时间戳的处理  
+        for (var i = 0; i < res.result.length; i++) {
+          res.result[i].product.start_date = toDate(res.result[i].product.start_date)
+          res.result[i].product.stop_date = toDate(res.result[i].product.stop_date)
+          console.log("sy", res.result[i]);
+        }
+        that.setData({
+          packageList: res.result,
+
+        })
+      }
+    }
+    else {
+      console.log(res.status, res.msg);
+    }
+  },
+  // 拼团成功回调
+  successPtzs: function (res) {
+    console.log(res);
+    var that = this;
+    if (res.status == 200) {
+      if (res.result != null) {
+        //时间戳的处理  
+        for (var i = 0; i < res.result.length; i++) {
+          res.result[i].product.start_date = toDate(res.result[i].product.start_date)
+          res.result[i].product.stop_date = toDate(res.result[i].product.stop_date)
+          console.log("sy", res.result[i]);
+
+        }
+        that.setData({
+
+          packageLists: res.result,
+        })
+      }
+    }
+    else {
+      console.log(res.status, res.msg);
+    }
+  },
+
+  // 拼团失败回调
+  successPtzf: function (res) {
+    console.log(res);
+    var that = this;
+    if (res.status == 200) {
+      if (res.result != null) {
+        //时间戳的处理  
+        for (var i = 0; i < res.result.length; i++) {
+          res.result[i].product.start_date = toDate(res.result[i].product.start_date)
+          res.result[i].product.stop_date = toDate(res.result[i].product.stop_date)
+          console.log("sy", res.result[i]);
+
+        }
+        that.setData({
+          packageListf: res.result
+        })
+      }
+    }
+    else {
+      console.log(res.status, res.msg);
+    }
+  },
+
+  /*********** 滑动切换tab ***********/
+  bindChange: function (e) {
+    var that = this;
+    that.setData({ currentTab: e.detail.current });
+  },
+  /*********** 点击tab切换 ***********/
+  swichNav: function (e) {
+    var that = this;
+    if (this.data.currentTab === e.target.dataset.current) {
+      return false;
+    } else {
+      that.setData({
+        currentTab: e.target.dataset.current
+      })
+    }
+    var statusx = e.target.dataset.current;
+    // var url = app.apiUrl + '/Market/GroupBuyJoinList';
+    var url = app.apiUrl + '/Material/TicketReceiveList';
+
+    if (statusx == 0) {
+      var params = { status: statusx }
+      app.request.requestGetApi(url, params, this, this.successPtz, this.failPtz)
+    }
+    else if (statusx == 1) {
+      var params = { status: statusx }
+      app.request.requestGetApi(url, params, this, this.successPtzs, this.failPtzs)
+    }
+    else if (statusx == 2) {
+      var params = { status: statusx }
+      app.request.requestGetApi(url, params, this, this.successPtzf, this.failPtzf)
+    }
+    var list = that.data.list;
+    // if (list.length <= 4) {
+    //   //获取屏幕高度  
+    //   wx.getSystemInfo({
+    //     success: function (res) {
+    //       that.setData({
+    //         clientHeight: res.windowHeight - res.windowWidth / 750 * 500
+    //       });
+    //     }
+    //   });
+    // } else {
+    //   //获取屏幕高度  
+    //   wx.getSystemInfo({
+    //     success: function (res) {
+    //       that.setData({
+    //         clientHeight: res.windowHeight
+    //       });
+    //     }
+    //   });
+    // }
+  },
+  //  搜索
+  bindInput: function (e) {
+    var that = this;
+    var keyword = e.detail.value;
+    console.log(keyword);
+  },
+
+  // 搜索表单提交
+  searchSubmit: function (e) {
+    var that = this;
+    var keyword = e.detail.value.keyword;
+    var url = app.apiUrl + '/Material/TicketReceiveList';
+    var params = {
+      keyword: keyword,
+    }
+    if (keyword == '' || keyword == undefined) {
+      wx.showToast({
+        title: '请搜索关键词',
+        icon: 'loading',
+        duration: 1000,
+      })
+    } else {
+      app.request.requestGetApi(url, params, this, this.successEr, this.failEr)
+    }
+
+  },
+  // 提交成功
+  successEr: function (res) {
+    var that = this;
+    var keyword = res.result;
+    console.log(keyword);
+    if (res.status == 200) {
+      if (res.result != null) {
+        // 时间戳处理
+        for (var i = 0; i < res.result.length; i++) {
+          res.result[i].product.start_date = toDate(res.result[i].product.start_date)
+          res.result[i].product.stop_date = toDate(res.result[i].product.stop_date)
+        }
+        that.setData({
+          packageListk: res.result,
+        })
+      } else {
+        that.setData({
+          packageListf: [],
+        })
+        wx.showToast({
+          title: '暂无搜索结果',
+          icon: 'loading',
+          duration: 1000,
+        })
+      }
+
+    } else {
+      console.log('提交返回不是200')
+    }
+  },
+  // 兑换码搜索跳转
+  btnSubm: function (e) {
+    var that = this;
+    var ticketId = e.currentTarget.dataset.id;
+    console.log(e);
+    wx.navigateTo({
+      url: '/pages/ucenter/redeempackage/packageDetail/packageDetail?ticketId=' + ticketId,
+    })
+  },
+
+})
+//时间戳转换时间  
+function toDate(number) {
+  var n = number * 1000;
+  var date = new Date(n);
+  var Y = date.getFullYear() + '-';
+  var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+  var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+  return (Y + M + D)
+}

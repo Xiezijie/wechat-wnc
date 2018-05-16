@@ -1,0 +1,233 @@
+/* pages/shopping/order/order.wxss */
+@import"/res/common.wxss";
+@import "/res/ifont/iconfont.wxss" ;
+
+.color1{
+  color: #45b761;
+}
+.color2{
+  color: #888;
+}
+.content{
+  padding-bottom: 120rpx;
+}
+
+/*** 收货地址 ***/
+.img{
+  height: 10rpx;
+  overflow: hidden;
+}
+.img image{
+  width: 100%;
+} 
+.addressBody{
+  padding: 30rpx;
+   background-color: #fff; 
+  line-height: 50rpx;
+  border-bottom: 1rpx solid #d9e3ea;
+  position: relative;
+  background-repeat:repeat-x;
+}
+.addressBody .icon{
+  position: absolute;
+  right: 30rpx;
+  top: 70rpx;
+  color: #7a7a7a;
+}
+.noAddress{
+  line-height: 120rpx;
+  height: 100rpx;
+  font-size: 40rpx;
+  color: #666;
+}
+
+/*** 商品列表 ***/
+.productBody{
+  background-color: #fff;
+  padding: 35rpx 20rpx 0;
+  margin-top: 20rpx;
+  border-bottom: 1rpx solid #d9e3ea;
+}
+.productBody_title{
+  padding: 0 10rpx 20rpx;
+  justify-content: space-between;
+  align-items: center;
+}
+.productBody >view{
+  display: flex;
+  border-bottom: 1rpx solid #d9e3ea;
+}
+.product_item{
+  padding: 20rpx 10rpx;
+}
+.product_item:last-child{
+  border-bottom: 0;
+}
+.product_item_left image{
+  width: 180rpx;
+  height: 180rpx;
+  border: 1px solid #d7e2ea;
+  margin-right: 20rpx;
+}
+.product_item_right_title{
+  height: 80rpx;
+  line-height: 40rpx;
+  overflow: hidden;
+  font-size: 28rpx;
+  color: #000000;
+  font-weight: 700;
+  margin-bottom: 20rpx;
+}
+.product_item_right_amount{
+  color: #000000;
+  font-size: 20rpx;
+  margin-bottom: 10rpx;
+}
+.product_item_right_amount text{
+  font-size: 30rpx;
+  color: #ff2741;
+}
+.product_item_right_price{
+  color: #999999;
+  font-size: 20rpx;
+}
+.product_item_right_price s{
+  text-decoration: line-through;
+}
+
+/*** 礼品卡 ***/
+.cardBody{
+  background-color: #fff;
+  padding: 35rpx 30rpx;
+  margin-top: 20rpx;
+  border-bottom: 1rpx solid #d9e3ea;
+  display: flex;
+  justify-content: space-between;
+}
+.cardBody_title{
+  font-size: 30rpx;
+  color: #333;
+}
+.cardBody .icon{
+  color: #7a7a7a;
+  margin-top: 8rpx;
+}
+
+/*** 订单详情 ***/
+.detailBody{
+  background-color: #fff;
+  padding: 35rpx 30rpx 10rpx;
+  margin-top: 20rpx;
+  border-bottom: 1rpx solid #d9e3ea;
+}
+.detailBody >view{
+  display: flex;
+  justify-content: space-between;
+  line-height: 60rpx;
+  height: 60rpx;
+}
+.detailBody >view text{
+  font-size: 26rpx;
+}
+.detailBody >view:last-child{
+  border-top: 1rpx solid #d9e3ea;
+  margin-top: 10rpx;
+  line-height: 80rpx;
+  height: 80rpx;
+}
+
+/*** 账户余额 ***/
+.payBody{
+  background-color: #fff;
+  /* padding: 35rpx 30rpx; */
+  margin-top: 20rpx;
+  line-height: 48rpx;
+  border-bottom: 1rpx solid #d9e3ea;
+  display: flex;
+  justify-content: space-between;
+}
+.payBody .radio-group>view{
+  padding: 15px 0;
+  margin: 0 30rpx;
+  border-bottom: 1rpx solid #d9e3ea;
+  display: flex;
+  justify-content: space-between;
+}
+.payBody .radio-group>view:last-child{
+  border-bottom: 0;
+}
+
+/*** 底部区域 ***/
+.bottomBody{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  text-align: center;
+  font-size: 36rpx;
+}
+
+/*** 礼包浮动层 ***/
+.floatBody{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color:#f5f8fa;
+}
+.floatBody_top{
+  padding: 0 20rpx;
+  background-color: #fff;
+  margin-bottom: 100rpx;
+}
+.floatBody_top_title{
+  line-height: 78rpx;
+  height: 78rpx;
+  border-bottom: 1px solid #d9e3ea;
+  padding: 0 10rpx;
+}
+.floatBody_top_radio{
+  display: flex;
+  justify-content: space-between;
+}
+.floatBody_top_item{
+  display: flex;
+  padding: 28rpx 0;
+  border-bottom: 1px solid #d9e3ea;
+}
+.item_left{
+  margin-right: 32rpx;
+}
+.item_left image{
+  width: 106rpx;
+  height: 78rpx;
+}
+.item_middle{
+  width: 500rpx;
+}
+.item_middle view:last-child{
+  margin-top: 10rpx;
+  overflow: hidden;
+text-overflow:ellipsis;
+white-space: nowrap;
+}
+.item_right{
+  margin-top: 20rpx;
+}
+.floatBody_bottom{
+  position: fixed;
+  bottom: 0;
+  height: 100rpx;
+  line-height: 100rpx;
+  background-color: #fff;
+  width: 100%;
+  text-align: center;
+}
+.floatBody_bottom view{
+  font-size: 36rpx;
+  color: #ff2741;
+}
+.noTicket{
+  padding: 120rpx;
+  text-align: center;
+}

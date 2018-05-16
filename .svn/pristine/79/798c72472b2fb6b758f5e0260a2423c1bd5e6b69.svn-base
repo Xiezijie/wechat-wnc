@@ -1,0 +1,30 @@
+<!--pages/shopping/payResult/payResult.wxml-->
+<view class='content'>
+  <!-- 成功提示 -->
+  <block wx:if="{{status == 200}}">
+    <view class="icon-box">
+      <icon class="icon-box-img" type="success" size="100"></icon>
+      <view class="icon-box-ctn">
+        <view class="icon-box-title">支付成功</view>
+        <view class="icon-box-desc">可在我的订单进行管理</view>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <!-- 失败提示 -->
+    <view class="icon-box">
+      <icon class="icon-box-img" type="cancel" size="100"></icon>
+      <view class="icon-box-ctn">
+        <view class="icon-box-title">支付失败</view>
+        <view class="icon-box-desc">可在我的订单进行支付</view>
+      </view>
+    </view>
+  </block>
+
+  <!-- 按钮区域 -->
+  <view class='btnBody'>
+    <view class='btnrtred' wx:if="{{}}"> bindtap='order'订单管理</view>
+    <view class='btnrtred' wx:else bindtap='order'>去订单支付</view>
+    <view class='btnrth' bindtap='back'>返回主页</view>
+  </view>
+</view>

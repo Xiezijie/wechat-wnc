@@ -1,0 +1,101 @@
+<!--pages/ucenter/redeempackage/packageList/packageList.wxml-->
+<view class="container">
+  <view class="menu flex_row">
+    <view class="menu-list font_color2 font_30 {{currentTab==0 ? 'menu-list-on' : ''}}" data-current="0" bindtap="swichNav">全部礼包</view>
+    <view class="menu-list font_color2 font_30 {{currentTab==1 ? 'menu-list-on' : ''}}" data-current="1" bindtap="swichNav">未使用</view>
+    <view class="menu-list font_color2 font_30 {{currentTab==2 ? 'menu-list-on' : ''}}" data-current="2" bindtap="swichNav">已失效</view>
+  </view>
+  <swiper current="{{currentTab}}" class="swiper-box" bindchange="bindChange" style="height: {{cliHeight?cliHeight+'px':'auto'}}">
+    <!--全部礼包-->
+    <swiper-item class="slide-swiper">
+      <scroll-view scroll-y bindscrolltolower="loadMore" style="height: {{cliHeight?cliHeight+'px':'auto'}}">
+        <!-- 循环的数据 -->
+        <block wx:if="{{packageList!=null}}">
+          <view class='list flex_row' wx:for="{{packageList}}" wx:key="{{index}}">
+            <view class="packageimg">
+              <image src="{{item.product.cover}}" mode="aspectFill"></image>
+            </view>
+            <view class="flex_col">
+              <view class="flex_row">
+                <text class="font_30_b font_color3">{{item.product.title}}</text>
+              </view>
+              <text class="font_26 font_color2">{{item.product.address}}</text>
+              <view>
+                <text class="font_20 font_color9">{{item.product.start_date}}-</text>
+                <text class="font_20 font_color9">{{item.product.stop_date}}</text>
+              </view>
+              <button wx:if="{{item.status==4}}" catchtap='btnSubm' data-id='{{item.identity}}' class="font_26 font_color1 btndred">查看详情</button>
+              <button wx:elif="{{item.status==0}}" class="font_26 font_color1 btndred nobtn">已使用</button>
+            </view>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="flex-col nodata">
+            <text class="icon iconfont icon-gaoxing"></text>
+            <text class=" font-36-b font-color2">暂无礼包</text>
+          </view>
+        </block>
+
+      </scroll-view>
+    </swiper-item>
+
+    <!--未使用-->
+    <swiper-item class="slide-swiper">
+      <scroll-view scroll-y bindscrolltolower="loadMore" style="height: {{cliHeight?cliHeight+'px':'auto'}}">
+        <block wx:if="{{packageLists!=null}}">
+          <view class='list flex_row' wx:for="{{packageLists}}" wx:key="{{index}}">
+            <view class="packageimg">
+              <image src="{{item.product.cover}}" mode="aspectFill"></image>
+            </view>
+            <view class="flex_col">
+              <view class="flex_row">
+                <text class="font_30_b font_color3">{{item.product.title}}</text>
+              </view>
+              <text class="font_26 font_color2">{{item.product.address}}</text>
+              <view>
+                <text class="font_20 font_color9">{{item.product.start_date}}-</text>
+                <text class="font_20 font_color9">{{item.product.stop_date}}</text>
+              </view>
+              <button catchtap='btnSubm' data-id='{{item.identity}}' class="font_26 font_color1 btndred">查看详情</button>
+            </view>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="flex-col nodata">
+            <text class="icon iconfont icon-gaoxing"></text>
+            <text class=" font-36-b font-color2">暂无礼包</text>
+          </view>
+        </block>
+      </scroll-view>
+    </swiper-item>
+    <!--已失效-->
+    <swiper-item class="slide-swiper">
+      <scroll-view scroll-y bindscrolltolower="loadMore" style="height: {{cliHeight?cliHeight+'px':'auto'}}">
+        <block wx:if="{{packageListf!=null}}">
+          <view class='list flex_row' wx:for="{{packageListf}}" wx:key="{{index}}">
+            <view class="packageimg">
+              <image src="{{item.product.cover}}" mode="aspectFill"></image>
+            </view>
+            <view class="flex_col">
+              <view class="flex_row">
+                <text class="font_30_b font_color3">{{item.product.title}}</text>
+              </view>
+              <text class="font_26 font_color2">{{item.product.address}}</text>
+              <view>
+                <text class="font_20 font_color9">{{item.product.start_date}}-</text>
+                <text class="font_20 font_color9">{{item.product.stop_date}}</text>
+              </view>
+               <button class="font_26 font_color1 btndred nobtn">已使用</button>
+            </view>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="flex-col nodata">
+            <text class="icon iconfont icon-gaoxing"></text>
+            <text class=" font-36-b font-color2">暂无礼包</text>
+          </view>
+        </block>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+</view>

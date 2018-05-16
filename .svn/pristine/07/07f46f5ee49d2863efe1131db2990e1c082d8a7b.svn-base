@@ -1,0 +1,112 @@
+// pages/ucenter/certifiedMember/application/application.js
+var app = getApp();
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    companytop: true,//公司选项上箭头
+    companybottom: false,//公司选项下箭头
+    companylist: true,//公司选项
+    applyList: [],       //保存表单传递的值
+    comList:[],           //存储机构列表
+    start: 1,             // 机构列表开始
+    perpage: 10,          // 机构列表显示页面数量
+  },
+
+  // 接口调用失败
+  Funfail: function (res) {
+    console.log(res);
+  },
+  onShow:function(){
+    var that = this;
+    var start = that.data.start;
+    var perpage=  that.data.perpage;
+    var url = app.apiUrl + "/Supplier/BusinessList";    //调用机构列表          
+    var params = {
+      start:1,
+      perpage:10,
+    }
+    app.request.requestGetApi(url,params,this,function(res){
+      var res = JSON.parse(decodeURIComponent(JSON.stringify(res)));
+      if(res.status ==200){
+        that.setData({
+          comList:res.result,
+        })
+      }
+    },this.Funfail)       
+  },
+  // 获取验证码
+  btndredx:function(){
+    
+  },
+  // 选择公司
+  company: function () {
+    this.setData({
+      companytop: false,//公司选项上箭头
+      companybottom: true,//公司选项下箭头
+      companylist: false,//公司选项
+      
+    })
+  },
+  // 选择公司结果
+  companyls: function (e) {
+    var that = this;
+    var cname = e.currentTarget.dataset.name;
+    that.setData({
+      companyName: cname,
+      companytop: true,//公司选项上箭头
+      companybottom: false,//公司选项下箭头
+      companylist: true,//公司选项
+    })
+  },
+
+
+  // 表单提交
+  apply: function (e) {
+    var that = this;
+    var name = e.detail.value.name;
+    var mobile = e.detail.value.mobile;
+    var code = e.detail.value.code;
+    var company = e.detail.value.company;  
+    var params = {}
+    console.log(e);
+    // 调用网络接口
+    app.request.requestGetApi(url, params, this, function (res) {
+      var res = JSON.parse(decodeURIComponent(JSON.stringify(res)));    //修正字符集。
+      var name = res.result;
+      var mobile = res.result;
+      var code = res.result;
+      var company = res.result;
+      if (res.status == 200) {
+        if (name == null || mobile == null || code == null || company == null) {
+          wx.showToast({
+            title: '填写错误/有空的地方',
+            icon: 'loading',
+            duration: 1000,
+          })
+        } else if (e.detail.value.mobile.length != "11") {
+          wx.showToast({
+            title: '手机格式错误',
+            icon: 'loading',
+            duration: 1000,
+          })
+        } else {
+          wx.showToast({
+            title: '提交成功',
+            icon: 'success',
+            duration: 1000,
+          })
+          that.setData({
+            applyList: res.result,
+          })
+          wx.reLaunch({
+            url: '/pages/ucenter/certifiedMember/applicationResult/applicationResult',
+          })
+        }
+      }
+      console.table(that.data.applyList);
+    }, this.Funfail)
+  },
+})

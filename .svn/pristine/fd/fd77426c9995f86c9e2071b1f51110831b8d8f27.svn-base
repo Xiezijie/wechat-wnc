@@ -1,0 +1,202 @@
+<view class="container">
+  <view class="menu flex_row">
+    <view class="menu-list font_color2 font_30 {{currentTab==0 ? 'menu-list-on' : ''}}" data-current="0" bindtap="swichNav">全部订单</view>
+    <view class="menu-list font_color2 font_30 {{currentTab==1 ? 'menu-list-on' : ''}}" data-current="1" bindtap="swichNav">待付款</view>
+    <view class="menu-list font_color2 font_30 {{currentTab==2 ? 'menu-list-on' : ''}}" data-current="2" bindtap="swichNav">待收货</view>
+    <view class="menu-list font_color2 font_30 {{currentTab==3 ? 'menu-list-on' : ''}}" data-current="3" bindtap="swichNav">已完成</view>
+  </view>
+  <swiper current="{{currentTab}}" class="swiper-box" bindchange="bindChange" style="height: {{cliHeight?cliHeight+'px':'auto'}}">
+    <!--全部订单-->
+    <swiper-item class="slide-swiper">
+      <scroll-view scroll-y bindscrolltolower="loadMore" style="height: {{cliHeight?cliHeight+'px':'auto'}}">
+        <!-- 循环的数据 -->
+        <block wx:if="{{orderList!=null}}">
+          <view class="orderL" wx:for="{{orderList}}" wx:key="ind"  wx:fot-item="prs">
+            <view class="orderid">订单编号：{{prs.id}}</view>
+            <view class='list flex_row' wx:for="{{prs.product}}" wx:key="ind" wx:fot-item="pro">
+              <view class="orderimg">
+                <image src="{{pro.cover}}" mode="aspectFill"></image>
+              </view>
+              <view class="flex_col">
+                <text class="font_30_b font_color3">{{pro.title}}</text>
+                <view class="flex_row">
+                  <text class="font_20">商城价</text>
+                  <text class="font_30_b font_color4">￥{{pro.univalent}} </text>
+                  <text class="font_30">X{{pro.univalent}}</text>
+                </view>
+                <view class="flex_row">
+                  <text class="font_20 font_color8">市场价</text>
+                  <text class="font_20 font_color8 text-dec">￥{{pro.market_price}}</text>
+                </view>
+              </view>
+            </view>
+            <view class="orderlb flex_row">
+              <view class="order_amount flex_row">
+                <text class="font_24 font_color9">{{item.shopping_total}}件商品 共计:</text>
+                <text class="font_30 font_color4">￥66.00</text>
+                <text class="font_24 font_color9">(含运费:<text  class="font_24 font_color4">￥23</text>)</text>
+              </view>
+              <view wx:if="{{item.status==4}}" class="orderbtn font_26 font_color4"  bindtap="pay">去支付</view>
+              <view wx:elif="{{item.status==2}}" class="orderbtn font_26 font_color4"  bindtap="receiving">确认收货</view>
+              <view wx:elif="{{item.status==1}}" class="orderbtn font_26 font_color4"  bindtap="review">填写评论</view>
+              <view wx:elif="{{item.status==0}}" class="orderbtn font_26 font_color4"  bindtap="commented">已评论</view>
+            </view>
+          </view>
+            <!-- 没有更多数据 -->
+          <view hidden='{{hidden}}' class='noMore'>
+            <text>没有更多数据</text>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="flex-col nodata">
+            <text class="icon iconfont icon-gaoxing"></text>
+            <text class=" font-36-b font-color2">暂无订单</text>
+          </view>
+        </block>
+      </scroll-view>
+    </swiper-item>
+
+    <!--待付款-->
+    <swiper-item class="slide-swiper">
+      <scroll-view scroll-y bindscrolltolower="loadMore" style="height: {{cliHeight?cliHeight+'px':'auto'}}">
+        <!-- 循环的数据 -->
+        <block wx:if="{{orderListf!=null}}">
+          <view class="orderL" wx:for="{{orderListf}}" wx:key="ind">
+            <view class="orderid">订单编号：{{item.id}}</view>
+            <view class='list flex_row' wx:for="{{item.product}}" wx:key="ind" wx:fot-item="pro">
+              <view class="orderimg">
+                <image src="{{pro.cover}}" mode="aspectFill"></image>
+              </view>
+              <view class="flex_col">
+                <text class="font_30_b font_color3">{{pro.title}}</text>
+                <view class="flex_row">
+                  <text class="font_20">商城价</text>
+                  <text class="font_30_b font_color4">￥{{pro.univalent}} </text>
+                  <text class="font_30">X{{pro.univalent}}</text>
+                </view>
+                <view class="flex_row">
+                  <text class="font_20 font_color8">市场价</text>
+                  <text class="font_20 font_color8 text-dec">￥{{pro.market_price}}</text>
+                </view>
+              </view>
+            </view>
+            <view class="orderlb flex_row">
+              <view class="order_amount flex_row">
+                <text class="font_24 font_color9">{{item.shopping_total}}件商品 共计:</text>
+                <text class="font_30 font_color4">￥66.00</text>
+                <text class="font_24 font_color9">(含运费:<text  class="font_24 font_color4">￥23</text>)</text>
+              </view>
+              <view class="orderbtn font_26 font_color4"  bindtap="pay">去支付</view>
+
+            </view>
+          </view>
+            <!-- 没有更多数据 -->
+          <view hidden='{{hidden}}' class='noMore'>
+            <text>没有更多数据</text>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="flex-col nodata">
+            <text class="icon iconfont icon-gaoxing"></text>
+            <text class=" font-36-b font-color2">暂无订单</text>
+          </view>
+        </block>
+      </scroll-view>
+    </swiper-item>
+    <!--待收货-->
+    <swiper-item class="slide-swiper">
+      <scroll-view scroll-y bindscrolltolower="loadMore" style="height: {{cliHeight?cliHeight+'px':'auto'}}">
+         <!-- 循环的数据 -->
+        <block wx:if="{{orderLists!=null}}">
+          <view class="orderL" wx:for="{{orderLists}}" wx:key="ind">
+            <view class="orderid">订单编号：{{item.id}}</view>
+            <view class='list flex_row' wx:for="{{item.product}}" wx:key="ind" wx:fot-item="pro">
+              <view class="orderimg">
+                <image src="{{pro.cover}}" mode="aspectFill"></image>
+              </view>
+              <view class="flex_col">
+                <text class="font_30_b font_color3">{{pro.title}}</text>
+                <view class="flex_row">
+                  <text class="font_20">商城价</text>
+                  <text class="font_30_b font_color4">￥{{pro.univalent}} </text>
+                  <text class="font_30">X{{pro.univalent}}</text>
+                </view>
+                <view class="flex_row">
+                  <text class="font_20 font_color8">市场价</text>
+                  <text class="font_20 font_color8 text-dec">￥{{pro.market_price}}</text>
+                </view>
+              </view>
+            </view>
+            <view class="orderlb flex_row">
+              <view class="order_amount flex_row">
+                <text class="font_24 font_color9">{{item.shopping_total}}件商品 共计:</text>
+                <text class="font_30 font_color4">￥66.00</text>
+                <text class="font_24 font_color9">(含运费:<text  class="font_24 font_color4">￥23</text>)</text>
+              </view>
+              <view class="orderbtn font_26 font_color4"  bindtap="receiving">确认收货</view>
+            
+            </view>
+          </view>
+            <!-- 没有更多数据 -->
+          <view hidden='{{hidden}}' class='noMore'>
+            <text>没有更多数据</text>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="flex-col nodata">
+            <text class="icon iconfont icon-gaoxing"></text>
+            <text class=" font-36-b font-color2">暂无订单</text>
+          </view>
+        </block>
+      </scroll-view>
+    </swiper-item>
+    <!--已完成-->
+    <swiper-item class="slide-swiper">
+      <scroll-view scroll-y bindscrolltolower="loadMore" style="height: {{cliHeight?cliHeight+'px':'auto'}}">
+         <!-- 循环的数据 -->
+        <block wx:if="{{orderListw!=null}}">
+          <view class="orderL" wx:for="{{orderListw}}" wx:key="ind">
+            <view class="orderid">订单编号：{{item.id}}</view>
+            <view class='list flex_row' wx:for="{{item.product}}" wx:key="ind" wx:fot-item="pro">
+              <view class="orderimg">
+                <image src="{{pro.cover}}" mode="aspectFill"></image>
+              </view>
+              <view class="flex_col">
+                <text class="font_30_b font_color3">{{pro.title}}</text>
+                <view class="flex_row">
+                  <text class="font_20">商城价</text>
+                  <text class="font_30_b font_color4">￥{{pro.univalent}} </text>
+                  <text class="font_30">X{{pro.univalent}}</text>
+                </view>
+                <view class="flex_row">
+                  <text class="font_20 font_color8">市场价</text>
+                  <text class="font_20 font_color8 text-dec">￥{{pro.market_price}}</text>
+                </view>
+              </view>
+            </view>
+            <view class="orderlb flex_row">
+              <view class="order_amount flex_row">
+                <text class="font_24 font_color9">{{item.shopping_total}}件商品 共计:</text>
+                <text class="font_30 font_color4">￥66.00</text>
+                <text class="font_24 font_color9">(含运费:<text  class="font_24 font_color4">￥23</text>)</text>
+              </view>
+
+              <view wx:if="{{item.status==1}}" class="orderbtn font_26 font_color4"  bindtap="review">填写评论</view>
+              <view wx:elif="{{item.status==0}}" class="orderbtn font_26 font_color4"  bindtap="commented">已评论</view>
+            </view>
+          </view>
+            <!-- 没有更多数据 -->
+          <view hidden='{{hidden}}' class='noMore'>
+            <text>没有更多数据</text>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="flex-col nodata">
+            <text class="icon iconfont icon-gaoxing"></text>
+            <text class=" font-36-b font-color2">暂无订单</text>
+          </view>
+        </block>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+</view>

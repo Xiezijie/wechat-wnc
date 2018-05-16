@@ -1,0 +1,89 @@
+<!--index.wxml-->
+<scroll-view bindscrolltolower='loadMore' scroll-y style='height:{{windowHeight}}px'>
+  <view class='index_head'>
+    <view class='index_advent'>
+      <!--广告图  -->
+      <block wx:if="{{popList != null}}">
+        <swiper class='swiper' indicator-dots='true' autoplay='true' interval='3000' duration='500'>
+          <block wx:for="{{popList}}" wx:key="{{index}}">
+            <swiper-item>
+              <image catchtap='wncBoard' id="{{item.product_identity}}" data-text="{{item.catalogue_identity}}" src="{{item.attach.source}}" class='slide-image' mode='aspectFill'></image>
+            </swiper-item>
+          </block>
+        </swiper>
+      </block>
+      <!--数组为空时  -->
+      <view wx:else>
+        <text class='noMoresed'>良心商家..不打广告QAQ~</text>
+      </view>
+
+      <!--公告滚动  -->
+      <swiper class='notice' circular='true' autoplay='true' interval='3000' duration='1000' vertical="true">
+        <block wx:for="{{popListe}}" wx:key="{{notice}}">
+          <swiper-item catchtouchmove="forbid" class='index_head_m'>
+            <text class='iconfont icon icon-laba-copy'></text>
+            <block wx:if="{{popListe!=null}}">
+              <text class='index_head_t'>公告：{{item.content}}</text>
+            </block>
+            <view wx:else>
+              <text>暂无最新公告</text>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+
+  <!-- 2个按钮  -->
+  <view class='index_mid_btn'>
+    <button catchtap='allBtn' class='mid_all'>
+      <text class='iconfont icon icon-caidan1'></text>
+      <text>全部商品</text>
+    </button>
+    <button catchtap='ticketBtn' class='mid_ticket'>
+      <text class='iconfont icon icon-youhui'></text>
+      <text> 票券兑换</text>
+    </button>
+  </view>
+  <view class='index_mid_nav'>
+    <image src='/images/bolang2.png'></image>
+    <text class='font_30_b'>礼包区</text>
+    <image src='/images/bolang2.png'></image>
+  </view>
+
+  <!--礼包区域数据  -->
+  <view class='index_mid_gift'>
+    <block wx:if="{{popLists !=null}}">
+      <block wx:for="{{popLists}}" wx:key="{{index}}">
+        <view class='index_glist' catchtap='joinDetail' data-id="{{item.identity}}">
+          <view class='index_border'><image src='{{item.cover}}' data-id="{{item.identity}}"></image></view>
+          <!--文字盒子  -->
+          <view class='index_pack' data-id="{{item.identity}}">
+            <view data-id="{{item.identity}}" class='packTitle font_28_b'>{{item.title}}</view>
+            <view data-id="{{item.identity}}" class='packPrice'>
+              <text>商城价：</text>
+              <text data-id="{{item.identity}}">￥{{item.univalent}}/份</text>
+            </view>
+            <view class='packMarket' data-id="{{item.identity}}">市场价：
+              <text data-id="{{item.identity}}">￥{{item.market_price}}</text>
+            </view>
+            <!--加入购物车按钮  -->
+            <button class='packBtn' catchtap='joinCart' data-id="{{item.identity}}">
+              <text class='iconfont icon icon-gouwuche' data-id="{{item.identity}}"></text>
+              <text class='packJoin' data-id="{{item.identity}}" data-text="{{item.univalent}}">加入购物车</text>
+            </button>
+          </view>
+        </view>
+      </block>
+    </block>
+
+    <view wx:else>
+      <text class='noMores'>暂无礼包可用</text>
+    </view>
+
+  </view>
+  <!--显示更多  -->
+  <view hidden='{{hidden1}}' class='noMore'>
+    <text>拉到底了.没有啦~</text>
+  </view>
+</scroll-view>

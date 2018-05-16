@@ -1,0 +1,68 @@
+/* pages/ticket/ticketResult/ticketResult.wxss */
+@import "/res/common.wxss";
+@import "/res/ifont/iconfont.wxss";
+
+.font_40_b{
+  font-size: 40rpx;
+  font-weight: 700;
+}
+.lihe_40{
+  line-height: 40rpx;
+}
+.lihe_54{
+  line-height: 54rpx;
+}
+
+/***  信息提示  ***/
+.infoBody{
+  text-align: center;
+}
+.infoBody .icon{
+  font-size: 160rpx;
+  color: #ff2741;
+  padding: 64rpx 0 48rpx;
+}
+.infoBody .icon-kaixin{
+  color: #09ba07;
+}
+.infoBody_view{
+  font-size: 30rpx;
+  color: #333;
+  line-height: 50rpx;
+}
+.infoBody_tip{
+  text-align: left;
+  padding-left: 40rpx;
+}
+.infoBody_list{
+  background-color: #fff;
+  padding: 20rpx 30rpx;
+  display: flex;
+  text-align: left;
+  margin-top: 66rpx;
+}
+.infoBody_list image{
+  width: 180rpx;
+  height: 180rpx;
+  border: 1px solid #d2dee7;
+  margin-right: 20rpx;
+}
+.infoBody_ticket{
+  display: flex;
+  padding: 60rpx 80rpx;
+  background-color: #fff;
+  margin: 40rpx 20rpx 28rpx;
+  border-radius: 6rpx;
+}
+.infoBody_ticket image{
+  width: 150rpx;
+  height: 110rpx;
+  margin-right: 50rpx;
+}
+.infoBody_ticket text{
+  line-height: 140rpx;
+  height: 110rpx;
+}
+.btnrtred{
+  margin: 44rpx 20rpx;
+}

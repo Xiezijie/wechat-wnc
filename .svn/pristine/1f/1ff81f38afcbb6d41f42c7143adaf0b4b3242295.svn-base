@@ -1,0 +1,37 @@
+<view class="container">
+
+  <!-- 循环的数据 -->
+  <view class="commentL">
+    <view class='list' wx:key="index" wx:for="{{orderlist}}" wx:for-item="com">
+      <view class="goods flex_row">
+        <view class="commentimg">
+          <image src="{{com.cover}}" mode="aspectFill"></image>
+        </view>
+        <view class="flex_col">
+          <text class="font_28_b">{{com.title}}</text>
+        </view>
+      </view>
+      <view class="comment_box">
+        <textarea class="font_26 font_color2" data-id='{{com.identity}}' bindblur="bingtext" maxlength="200" placeholder-class="font_26 font_color2" placeholder='说点什么吧（120字）'></textarea>
+        <view class="commentLimg flex_row">
+          <!--添加图片  -->
+          <view class="addimg flex_col" bindtap="uploadbd" data-id='{{com.identity}}'>
+            <text class="iconfont icon-tianjiazhaopian"></text>
+            <text class="font_20 font_color8">添加照片</text>
+          </view>
+          <block wx:for="{{imglist}}" wx:key="index">
+            <block wx:if="{{item.id==com.identity}}">
+              <block wx:for="{{item.artimg}}" wx:key="index" wx:for-item="cons">
+                <view class="comimg">
+                  <image src="{{cons}}" mode="aspectFill"></image>
+                  <text class="iconfont icon-guanbi-copy" bindtap="deletecom" data-id='{{com.identity}}'></text>
+                </view>
+              </block>
+            </block>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="btnrtred" bindtap="commentBtn">确认评价</view>
+</view>

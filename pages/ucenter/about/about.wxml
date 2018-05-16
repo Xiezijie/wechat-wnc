@@ -1,0 +1,13 @@
+<!--pages/ucenter/about/about.wxml-->
+<view class='container'>
+  <view class='con-about' style='background: url(/images/about.jpg) no-repeat top center'>
+    <view class='about-main'>
+      <text>万农春</text>
+    </view>
+    <view class='about-foot'>
+      <text>互联网在现实生活中应用很广泛。在互联网上可以聊天、玩游戏、查阅东西等。更为重要的是在互联网上还可以进行 广告宣传和购物。互联网给现实生活带来很大的方便。网民在互联网上可以在数字知识库里寻找自己学业上、事业上的所需，从而帮助网民的工作与学习。互联网在现实的应用很广泛，每天有数以亿计的人使用互联网，大家用它来聊天，了解资讯，购物等种种，也不乏一些人利用互联网为自己的产品宣传，因此也促使了一些新兴行业的诞生，例如网络营销等等，互联网的影响正在日益影响着我们的生活，我们也将因此而获得更大的改变
+</text>
+    </view>
+  </view>
+</view>
+

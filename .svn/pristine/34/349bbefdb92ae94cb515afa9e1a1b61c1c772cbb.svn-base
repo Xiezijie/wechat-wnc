@@ -1,0 +1,6 @@
+<!--pages/ucenter/wallet/recharge/recharge.wxml-->
+<view class='depost'>
+  <input type='number' placeholder='填写充值金额'></input>
+</view>
+<view class='depost_mid'><view>通过微信支付</view></view>
+<view class='bottomBody'><view class='btnrtred font_36'>立即充值</view></view>

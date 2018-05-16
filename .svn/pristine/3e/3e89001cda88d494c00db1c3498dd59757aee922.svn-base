@@ -1,0 +1,61 @@
+<!--pages/shopping/cart/cart.wxml-->
+<view class='content'>
+  <block wx:if="{{list != ''}}">
+    <!-- 全选按钮 -->
+    <view class='topBody'>
+      <radio-group class="radio-group">
+        <label class="radio" data-flag="{{!allchecked}}" bindtap="allSelect">
+          <radio checked="{{allchecked}}"/>全选
+        </label>
+      </radio-group>
+      <text bindtap='del'>删除</text>
+    </view>
+
+    <!-- 购物车列表 -->
+    <view class='itemList'>
+      <view class='itemBody' wx:for="{{list}}" wx:key="{{index}}">
+        <radio-group class="radio-group leftBox" bindtap='radio' data-index="{{index}}" data-flag="{{item.choose}}">
+          <label class="radio" >
+            <radio checked="{{item.choose}}"/>
+          </label>
+        </radio-group>
+        <view class='middleBox'>
+          <image src='{{item.product.cover}}'></image>
+        </view>
+        <view class='rightBox'>
+          <view class='rightBox_title'>{{item.product.title}}</view>
+          <view class='rightBox_amount'>商城价： <text>￥{{item.univalent}}</text></view>
+          <view class='rightBox_price'>市场价：<s> ￥{{item.product.market_price}} </s></view>
+          <view class='rightBox_float'>
+            <text class='icon iconfont icon-jian' data-num="{{index}}" data-id='{{item.identity}}' data-index="{{item.quantity}}" bindtap='reduce'></text>
+            <text>{{item.quantity}}</text>
+            <text class='icon iconfont icon-jia' data-num="{{index}}" data-id='{{item.identity}}' data-index="{{item.quantity}}" bindtap='add'></text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 结算部分 -->
+    <view class='bottomBody'>
+      <view class='bottomBody_left'>
+        <view>总计：<text class='font_color4'>￥{{total_price}}</text></view>
+        <view>不含运费，为您优惠了 <text>￥{{discount_price}}</text></view>
+      </view>
+      <view class='bottomBody_right' bindtap='pay'>
+        <text>去结算</text>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class='content_nodata'>
+      <text class='icon iconfont icon-gouwuche2'></text>
+      <view>购物车没有东西哟</view>
+    </view>
+  </block>
+</view>
+
+<!-- wx.showToast提示框 -->
+<view class='tipFloat' hidden='{{hidden}}'>
+  <text class='icon iconfont icon-bukaixin'></text>
+  <view>{{tipFloat}}</view>
+</view>

@@ -1,0 +1,31 @@
+<view class="container">
+
+    <!-- 循环的数据 -->
+    <view class="commentL">
+      <view class='list' wx:key="index" wx:for="{{orderlist}}">
+        <view class="goods flex_row">
+          <view class="commentimg">
+            <image src="{{item.cover}}" mode="aspectFill"></image>
+          </view>
+          <view class="flex_col">
+            <text class="font_28_b">{{item.title}}</text>
+          </view>
+        </view>
+        <view class="comment_box">
+          <textarea class="font_26 font_color2" data-id='{{item.identity}}' bindblur="bingtext" maxlength="200" placeholder-class="font_26 font_color2" placeholder='说点什么吧（120字）'></textarea>
+          <view class="commentLimg flex_row">
+          <!--添加图片  -->
+            <view class="addimg flex_col" bindtap="uploadbd" data-id='{{item.identity}}'>
+              <text class="iconfont icon-tianjiazhaopian"></text>
+              <text class="font_20 font_color8">添加照片</text>
+            </view>
+            <view class="comimg" wx:for="{{imglist}}">
+               <image src="{{item.artimg}}" mode="aspectFill"></image>
+               <text class="iconfont "></text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="btnrtred" bindtap="commentBtn">确认评价</view>
+</view>

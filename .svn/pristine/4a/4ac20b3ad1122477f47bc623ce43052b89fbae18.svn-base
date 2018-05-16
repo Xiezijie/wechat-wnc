@@ -1,0 +1,36 @@
+<view class="container">
+  <!--认证成功  -->
+  <block>
+    <view class="result-top">
+      <image src="/images/success-apply.jpg" mode="aspectFill"></image>
+    </view>
+    <view class="apply-result">
+      <view class="list flex_row">
+        <text class="icon iconfont icon-shenfen-tianchong"></text>
+        <text class="font_26">您的身份：立正
+        </text>
+      </view>
+      <view class="list flex_row">
+        <text class="icon iconfont icon-dianhua"></text>
+        <text class="font_26">18580322222</text>
+      </view>
+      <view class="list flex_row">
+        <text class="icon iconfont icon-gongsi"></text>
+        <text class="font_26">重庆斯巴达网络科技</text>
+      </view>
+    </view>
+  </block>
+  <!--认证失败  -->
+  <block>
+    <view class="result-fail flex_col">
+      <text class="icon iconfont icon-guanbi"></text>
+      <text class="font_48_b">认证失败</text>
+      <text class="font_30">在后台没有与您匹配的信息</text>
+      <text class="font_30">请检查信息填写正确</text>
+    </view>
+  </block>
+  <view class="result-bottom">
+    <view class="btnrtred font_36_b" bindtap='navback'>返回个人中心</view>
+    <view class="font_36_b font_color9 text-ac">返回主页</view>
+  </view>
+</view>

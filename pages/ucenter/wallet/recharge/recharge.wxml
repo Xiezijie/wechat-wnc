@@ -1,0 +1,6 @@
+<!--pages/ucenter/wallet/recharge/recharge.wxml-->
+<view class='recharge'>
+  <input bindinput='rechar' type='number' placeholder='填写充值金额' name="recharges"></input>
+</view>
+<view class='recharge_mid'><view>通过微信支付</view></view>
+<view class='bottomBody'><view class='btnrtred font_36' bindtap='recharge'>立即充值</view></view>

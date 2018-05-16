@@ -1,0 +1,53 @@
+<!--pages/ucenter/wallet/wallet.wxml-->
+<!-- 账户余额 -->
+<view class='topBody'>账户余额: <text class='font_44_b font_color4'> ￥{{list.wallet.amount}}</text></view>
+
+<view class='middleBody'>
+  <!-- 查询按钮 -->
+  <form bindsubmit="dateSubmit">
+    <view class='formBody'>
+      <view class="formBody_top">
+        <text>从 </text>
+        <picker mode="date" start="{{start}}" end="{{end}}" bindchange="bindstartDateChange">
+          <view class="picker font-26">
+            {{startdate}}
+            <input hidden='dateHidden' name="startdate"></input>
+          </view>
+        </picker>
+        <text> 到 </text>
+        <picker mode="date" start="{{start}}" end="{{end}}" bindchange="bindendDateChange">
+          <view class="picker font-26">
+            {{enddate}}
+            <input hidden='dateHidden' name="enddate"></input>
+          </view>
+        </picker>
+      </view>
+      <button class="btndred" form-type="submit">筛选</button>
+    </view>
+  </form>
+  <!-- 使用记录 -->
+  <view class='box'>
+    <block wx:if="{{list.stream != null}}">
+      <view class='box_list' wx:for="{{list.stream}}" wx:key="{{index}}">
+        <view class='box_left'>
+          <text class='font_28_b'>{{item.title}}</text>
+          <text class='font_color8 font_20'>{{item.dateline}}</text>
+        </view>
+        <view class='box_right'>
+          <text class='font_28_b font_color4' wx:if="{{item.quality.identity == 2}}">+{{item.amount}}</text>
+          <text class='font_28_b color1' wx:else>-{{item.amount}}</text>
+          <text class='font_color8 font_20'>余额：{{item.total_amount}}</text>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="nodata">
+        <text class="icon iconfont icon-dingdan"></text>
+        <text class=" font-36-b font-color2">暂无记录</text>
+      </view>
+    </block>
+  </view>
+</view>
+
+<!-- 点我充值 -->
+<view class='bottomBody'><view class='btnrtred font_36'>点我充值</view></view>

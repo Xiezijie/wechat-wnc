@@ -1,0 +1,23 @@
+@import "/res/ifont/iconfont.wxss";
+@import "/res/common.wxss";
+
+page{ background: #fff;}
+.apply-top{paddding-bottom: 26rpx; height:353rpx; background: #f5f8fa}
+.apply-top image{ width: 100%; height: 327rpx;  }
+
+/*表单  */
+.apply-form{ background: #fff; padding: 63rpx 20rpx 0 20rpx;}
+.apply-form .list{padding: 15rpx 10rpx;}
+.apply-form .list.flex_row{ justify-content: space-between;}
+ .apply-form .list.flex_row input{ width: 470rpx;}
+.apply-form .list input{ height: 90rpx; line-height: 90rpx; padding: 0 15rpx; color: #666; font-size:26rpx;  border-radius:5rpx; border:1rpx solid #ddd}
+.apply-form .list .btndredx{ width: 200rpx; font-size: 24rpx; text-align: center;}
+.apply-form .companypost{ position: relative}
+.apply-form .icon{ position: absolute; top: 45rpx; right: 40rpx; z-index: 999; font-size:29rpx; color: #aaafbe;}
+.apply-form .companylist{ position: absolute; top: 99rpx; z-index: 999; width: 693rpx; background: #fff; border-radius:0 0 5rpx 5rpx; border:1rpx solid #ddd; border-top-color:#f3f1f1; }
+.apply-form .companyl{height: 90rpx; line-height: 90rpx; padding: 0 15rpx; color: #666; font-size:26rpx; }
+.apply-form .companyl:hover{ background: #dadfec; font-weight: 700;}
+
+
+.apply-form .btnrtred{margin-top: 20rpx;}
+.apply-form .btnrtred{margin-top: 20rpx;}

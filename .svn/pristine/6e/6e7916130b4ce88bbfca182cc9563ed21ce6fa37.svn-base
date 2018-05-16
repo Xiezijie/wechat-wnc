@@ -1,0 +1,47 @@
+/* pages/ucenter/ucenter/ucenter.wxss */
+@import "/res/ifont/iconfont.wxss";
+@import "/res/common.wxss";
+
+
+/*公共样式  */
+.list{ border-bottom: 1rpx solid #d9e3ea;}
+.list .icon-you{ font-size:30rpx; color:#aaafbe;}
+.flex_row{ align-items: center; justify-content: space-between}
+/*个人信息  */
+.userinfo{background: #fe4b6c; position: relative; height: 317rpx; margin-bottom: 20rpx;}
+.userinfo .flex_col{ align-items: center; padding-top:40rpx; }
+.userinfo .flex_col image{ width: 144rpx; height: 144rpx; overflow: hidden; background: #ccc; border-radius: 72rpx;}
+.userinfo .flex_col .font_30{ margin: 20rpx 0 15rpx 0;}
+.userinfo .userapply{ position: absolute; top:27rpx;right: 20rpx; width:148rpx; height: 43rpx; border-radius: 5rpx; background: #ffc100;color:#775c08; justify-content: flex-start}
+.userinfo .userapply .icon{ color:#ff2741; font-size:20rpx; margin:0 8rpx;}
+.userinfo .userapply .font_18{ color:#775c08; }
+
+/*资金管理  */
+.useraccount{ margin-bottom: 20rpx; background: #fff;}
+.useraccount .list{ margin: 0 20rpx; padding: 47rpx 0;}
+.useraccount .list:last-child{ margin:0rpx; padding: 47rpx 20rpx;}
+.useraccount .icon{ margin: 0 40rpx 0 10rpx;}
+.useraccount .icon-qianbao{ font-size: 70rpx; color:#ff4800}
+.useraccount .icon-libao{ font-size: 70rpx; color:#ff2741}
+.useraccount .font_30_b{ margin-right: 15rpx;}
+.useraccount .btndred{ width: 160rpx; text-align: center}
+.useraccount .numtip{ height: 29rpx; line-height: 29rpx; background: #ff2742; color: #fff; font-size: 17rpx; padding: 0 10rpx; border-radius: 14.5rpx;}
+
+/*收藏  */
+.usercollection{margin-bottom: 20rpx; background: #fff;align-items: center; justify-content: space-between; padding: 23rpx 20rpx;}
+.usercollection .icon-shoucang{color: #ff485f; font-size:41rpx; margin: 0 14rpx 0 10rpx}
+
+/*个人管理  */
+.usermanage{ background: #fff;}
+.usermanage .list{ margin: 0 20rpx;padding: 23rpx 0;}
+.usermanage .list:last-child{ margin:0rpx; padding: 23rpx 20rpx;}
+.usermanage .icon{font-size:41rpx; margin: 0 28rpx 0 10rpx}
+.usermanage .icon-dingdan{color:#09c296}
+.usermanage .icon-daifukuan{color:#ff485f}
+.usermanage .icon-daishouhuo{color:#f97461}
+.usermanage .icon-yiwancheng{color:#82bff4}
+.usermanage .icon-ccgl-dizhichaxun-4{color:#4fa5f0}
+.usermanage .icon-guanyuwomen{color:#d6af50}
+
+.usermanage .icon-you{ margin: 0}
+.usermanage .numtip{ height: 35rpx; line-height: 35rpx; background: #ff2742; color: #fff; font-size: 21rpx; padding: 0 12rpx; border-radius: 17.5rpx;}

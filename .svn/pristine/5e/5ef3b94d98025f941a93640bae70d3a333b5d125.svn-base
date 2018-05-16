@@ -1,0 +1,37 @@
+<!--pages/ucenter/redeemcollect/collectList/collectList.wxml-->
+<view class="container">
+  <!--收藏列表-->
+  <scroll-view scroll-y bindscrolltolower="loadMore" style="height: {{cliHeight?cliHeight+'px':'auto'}}">
+    <block wx:if="{{collectList!=''}}">
+      <view class='list flex_row' wx:for="{{collectList}}" wx:key="{{index}}">
+
+        <view class="collectimg" data-id="{{item.product.identity}}" bindtap="details">
+          <image src="{{item.product.cover}}" mode="aspectFill"></image>
+        </view>
+        <view class="flex_col"  data-id="{{item.product.identity}}" bindtap="details">
+          <text class="font_30_b font_color3">{{item.product.title}}</text>
+          <view class="flex_row">
+            <text class="font_20">商城价</text>
+            <text class="font_26_b font_color4">￥{{item.product.univalent}}</text>
+          </view>
+          <view class="flex_row">
+            <text class="font_20 font_color8">市场价</text>
+            <text class="font_20 font_color8 text-dec">￥{{item.product.market_price}}</text>
+          </view>
+        </view>
+
+        <text class="icon iconfont icon-shoucang successicon" data-id='{{item.identity}}' bindtap="collectad"></text>
+      </view>
+      <!-- 没有更多数据的情况 -->
+      <view hidden='{{hidden1}}' class='noMore'>
+        <text>没有更多数据</text>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="flex-col nodata">
+        <text class="icon iconfont icon-gaoxing"></text>
+        <text class=" font-36-b font-color2">暂无收藏记录</text>
+      </view>
+    </block>
+  </scroll-view>
+</view>

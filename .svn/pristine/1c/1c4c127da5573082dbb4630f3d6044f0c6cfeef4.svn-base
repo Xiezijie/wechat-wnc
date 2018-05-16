@@ -1,0 +1,36 @@
+/* pages/ucenter/wallet/recharge/recharge.wxss */
+@import "/res/common.wxss";
+@import "/res/ifont/iconfont.wxss";
+
+/*充值input  */
+
+.depost input {
+  background: #fff;
+  text-align: center;
+  width: 749rpx;
+  height: 188rpx;
+  font-weight: 600;
+  color: #999;
+  font-size: 36rpx;
+  border-bottom: 1rpx solid #d9e3ea;
+}
+.depost_mid{
+  background: #fff;
+  margin-top: 30rpx;
+  width: 750rpx;
+  height: 112rpx;
+  color: #333;
+  border-bottom: 1rpx solid #d9e3ea;  
+}
+
+.depost_mid view{
+  padding: 35rpx;
+  font-size: 28rpx;  
+}
+/*** 点我充值 ***/
+
+.bottomBody {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

@@ -1,0 +1,219 @@
+/**index.wxss**/
+@import "/res/ifont/iconfont.wxss";
+@import "/res/common.wxss";
+
+/*广告图  */
+
+button {
+  padding: 0;
+}
+
+.swiper {
+  width: 100%;
+  height: 400rpx;
+}
+
+.swiper image {
+  width: 100%;
+  height: 100%;
+}
+
+/*公告提示区域  */
+
+.notice {
+  height: 80rpx;
+}
+
+.index_head_m {
+  background: #fff;
+  font-size: 26rpx;
+  color: #666;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 80rpx;
+}
+
+.index_head_m .icon {
+  color: red;
+  font-size: 44rpx;
+  padding: 0 30rpx;
+}
+
+/*主页大按钮区域  */
+
+.index_mid_btn {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+}
+
+.index_mid_btn button {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  line-height: 140rpx;
+}
+
+.index_mid_btn .icon {
+  padding: 0 20rpx;
+  color: #fff;
+  font-size: 70rpx;
+}
+
+.index_mid_btn .icon-youhui {
+  font-size: 100rpx;
+}
+
+.mid_all {
+  padding: 0 30rpx;
+  background: linear-gradient(to right top, #ff7740, #ff3241);
+}
+
+.mid_all text:nth-child(2) {
+  font-size: 40rpx;
+  color: #fff;
+  font-weight: 700;
+}
+
+.mid_ticket {
+  padding: 0 30rpx;
+  background: linear-gradient(to right, #ffa700, #ff6a00);
+}
+
+.mid_ticket text:nth-child(2) {
+  font-size: 40rpx;
+  color: #fff;
+  font-weight: 700;
+}
+
+/*页面礼包文字样式  */
+
+.index_mid_nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20rpx 0;
+}
+
+.index_mid_nav image {
+  width: 46rpx;
+  height: 23rpx;
+  margin: 0 20rpx;
+}
+
+.index_mid_nav text {
+  color: #000;
+}
+
+/*显示数据的地方  */
+
+.index_glist {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding: 20rpx 0rpx;
+  border-bottom: 1rpx solid #d7e2e8;
+}
+
+.index_border {
+  width: 180rpx;
+  height: 180rpx;
+  border: 1px solid #d9e3ea;
+  box-sizing: border-box;
+  margin: 0 20rpx;
+  padding: 20rpx;
+}
+.index_border image{
+  width: 170rpx;
+  height: 170rpx;
+  margin: -15rpx 0 0 -20rpx;
+  padding: 20rpx;
+}
+
+.index_pack {
+  line-height: 59rpx;
+}
+
+.index_pack .packPrice text:nth-child(1) {
+  font-weight: 600;
+  font-size: 20rpx;
+}
+
+.index_pack .packPrice text:nth-child(2) {
+  color: red;
+  font-size: 26rpx;
+  font-weight: 600;
+}
+
+.index_pack .packMarket {
+  color: gray;
+  font-size: 20rpx;
+}
+
+.index_pack .packMarket text {
+  text-decoration: line-through;
+  color: gray;
+  font-size: 20rpx;
+}
+
+.index_head_t {
+  display: block;
+  color: #333;
+  font-size: 26rpx;
+}
+
+.icon-laba-copy {
+  float: left;
+}
+
+/* 按钮 */
+
+.packBtn {
+  position: absolute;
+  top: 101rpx;
+  right: 22rpx;
+  border: 1rpx solid red;
+  background: none;
+  display: flex;
+  align-items: center;
+  padding: 0 20rpx;
+}
+
+.packBtn text {
+  color: red;
+  font-size: 25rpx;
+}
+
+.packBtn .icon {
+  font-size: 28rpx;
+}
+
+.packBtn .packJoin {
+  font-size: 26rpx;
+  margin-left: 10rpx;
+}
+
+.packBtn::after {
+  display: none;
+}
+
+/*拉到底提示  */
+.index_mid_gift {
+  margin-top: 30rpx;
+}
+.noMore {
+  text-align: center;
+  background: #f4f8fb;
+  padding: 20rpx;
+}
+
+ .noMores {
+  padding: 280rpx;
+} 
+
+.noMoresed {
+  padding: 200rpx;
+}

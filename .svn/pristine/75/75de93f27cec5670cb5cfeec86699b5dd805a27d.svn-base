@@ -1,0 +1,35 @@
+<!--pages/products/productList/productList.wxml-->
+<view class="content">
+  <view class='nav_left'>
+    <view class="nav_left_items {{item.identity == scrollNum ? 'selected':''}}" wx:for="{{list}}" wx:key="{{index}}" bindtap="selectMenuAct" data-id="{{item.identity}}">{{item.title}}</view>
+  </view>
+
+  <scroll-view scroll-y="true" style="height: {{windowHeight}}px" class="goods" bindscroll="goodsScrollAct" scroll-top="{{scrollTop}}" scroll-into-view="list{{toView}}">
+    <view id="list{{list.identity}}" wx:for="{{list}}" wx:key="{{index}}" wx:for-item="list" class='list'>
+      <view class='goods_title'>{{list.title}}</view>
+
+      <block wx:for="{{datalist}}" wx:key="{{index}}">
+        <block wx:if="{{list.identity == item.catalogue.catalogue_identity}}">
+        
+          <view class='goods_item' id="{{item.identity}}" wx:if="{{list.title == '礼包'}}" bindtap='giftDetails'>
+            <image src='{{item.cover}}'></image>
+            <view>
+              <view class='goods_item_title'>{{item.title}}</view>
+              <view class='goods_item_univalent'>礼包价：<text>￥{{item.univalent}}/份</text></view>
+              <view class='goods_item_price'>市场价：<text>￥{{item.market_price}}</text></view>
+            </view>
+          </view>
+
+          <view class='goods_item' id="{{item.identity}}" wx:else bindtap='productDetails'>
+            <image src='{{item.cover}}'></image>
+            <view>
+              <view class='goods_item_title'>{{item.title}}</view>
+              <view class='goods_item_univalent'>商城价：<text>￥{{item.univalent}}/份</text></view>
+              <view class='goods_item_price'>市场价：<text>￥{{item.market_price}}</text></view>
+            </view>
+          </view>
+        </block>
+      </block>
+    </view>
+  </scroll-view>
+</view>
